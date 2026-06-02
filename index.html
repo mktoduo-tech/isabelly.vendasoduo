@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Script de Qualificação — Pré-Vendas Oduo</title>
+<meta name="description" content="Roteiro de qualificação de leads (locadoras) para o time de pré-vendas da Oduo." />
+<style>
+  :root{
+    --bg:#0b1020; --card:#141a2e; --card2:#1b2236; --line:#27304a;
+    --txt:#e8ecf6; --mut:#9aa6c4; --brand:#00d18f; --brand2:#00a3ff; --wpp:#25d366;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:
+    radial-gradient(1200px 600px at 80% -10%,rgba(0,163,255,.12),transparent),
+    radial-gradient(900px 500px at -10% 10%,rgba(0,209,143,.12),transparent),var(--bg);
+    color:var(--txt);line-height:1.6}
+  .wrap{max-width:880px;margin:0 auto;padding:32px 20px 80px}
+  header{text-align:center;margin-bottom:28px}
+  .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:.5px}
+  .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+  h1{font-size:30px;margin:18px 0 6px;background:linear-gradient(90deg,var(--brand),var(--brand2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--mut);max-width:620px;margin:0 auto;font-size:15px}
+  .tabs{display:flex;gap:8px;justify-content:center;margin:26px 0 22px;flex-wrap:wrap}
+  .tab{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--txt);
+    padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;transition:.2s}
+  .tab:hover{border-color:var(--brand2)}
+  .tab.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#04121c;border-color:transparent}
+  .tab.wpp.active{background:var(--wpp);color:#04121c}
+  .panel{display:none;animation:fade .3s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px}
+  .block h2{font-size:16px;margin:0 0 14px;display:flex;align-items:center;gap:10px;color:var(--brand)}
+  .badge{font-size:12px;background:var(--card2);border:1px solid var(--line);color:var(--mut);
+    padding:3px 10px;border-radius:999px}
+  ol{margin:0;padding:0;list-style:none;counter-reset:q}
+  li{counter-increment:q;display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+  li:last-child{border-bottom:none}
+  li::before{content:counter(q);flex:0 0 26px;height:26px;border-radius:8px;display:grid;place-items:center;
+    font-size:13px;font-weight:700;background:var(--card2);border:1px solid var(--line);color:var(--brand2)}
+  .wpp li::before{color:var(--wpp)}
+  .em{color:var(--mut);font-style:italic}
+  footer{text-align:center;color:var(--mut);font-size:13px;margin-top:34px}
+  .note{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    color:var(--mut);font-size:14px;margin-bottom:22px}
+  @media print{body{background:#fff;color:#000}.tabs{display:none}.panel{display:block!important}
+    .block{border-color:#ccc}h1{color:#000;-webkit-text-fill-color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo"><span class="dot"></span> ODUO</div>
+    <h1>Script de Qualificação — Pré-Vendas</h1>
+    <p class="sub">Roteiro para qualificar <strong>locadoras</strong>: entender a empresa, o que ela loca,
+      como funciona o marketing e o comercial — e definir se é um lead apto.</p>
+  </header>
+
+  <div class="note">💡 <strong>Como usar:</strong> escolha o canal abaixo. Use a versão de <strong>Ligação/Reunião</strong>
+    para um diagnóstico completo e a de <strong>WhatsApp</strong> para qualificar por texto, na ordem.</div>
+
+  <div class="tabs">
+    <div class="tab active" data-target="call">📞 Ligação / Reunião</div>
+    <div class="tab wpp" data-target="wpp">💬 WhatsApp</div>
+  </div>
+
+  <!-- LIGAÇÃO -->
+  <section class="panel active" id="call">
+    <div class="block">
+      <h2>🏢 Bloco 1 — Sobre a empresa</h2>
+      <ol>
+        <li>Me conta um pouco: há quanto tempo a locadora existe e como ela começou?</li>
+        <li>Quantas pessoas trabalham na empresa hoje? E quantas no comercial?</li>
+        <li>Vocês atendem qual região? (cidade, estado, raio de atuação)</li>
+        <li>Quem cuida das decisões de marketing e vendas hoje — é você, um sócio, um gestor?</li>
+        <li>Hoje a empresa está mais num momento de <span class="em">estruturar</span>, <span class="em">crescer</span> ou <span class="em">organizar a casa</span>?</li>
+        <li>Qual o maior gargalo que está te incomodando hoje no negócio?</li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2>🚜 Bloco 2 — O que vocês locam (operação)</h2>
+      <ol>
+        <li>Quais tipos de equipamento/máquina vocês locam? Qual é o carro-chefe?</li>
+        <li>Quantos itens vocês têm no parque de locação, mais ou menos?</li>
+        <li>Quem é o cliente que mais aluga de vocês? (construtora, indústria, pessoa física, eventos…)</li>
+        <li>Qual o ticket médio de uma locação? E o prazo médio (diária, semana, mês)?</li>
+        <li>Hoje, qual a taxa de ocupação do seu parque? Tem muito equipamento parado/ocioso?</li>
+        <li>Qual a sua meta de faturamento mensal e onde você está em relação a ela?</li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2>📣 Bloco 3 — Marketing</h2>
+      <ol>
+        <li>Como os clientes chegam até vocês hoje? (indicação, Google, redes, cliente antigo…)</li>
+        <li>Vocês já investem em marketing/anúncios? Em quais canais?</li>
+        <li>Se sim: quanto investem por mês e quem opera (interno, agência, freelancer)?</li>
+        <li>Como está a presença de vocês no Google? (site, Google Meu Negócio, avaliações)</li>
+        <li>Vocês já tentaram tráfego pago antes? Como foi a experiência?</li>
+        <li>Quantos orçamentos/contatos novos vocês recebem por mês hoje, mais ou menos?</li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2>💼 Bloco 4 — Comercial</h2>
+      <ol>
+        <li>Quando chega um lead/pedido de orçamento, qual o caminho até virar locação?</li>
+        <li>Quem atende esses contatos? Tem alguém dedicado a vendas?</li>
+        <li>Vocês usam algum sistema/CRM ou WhatsApp pra controlar os atendimentos?</li>
+        <li>Qual o tempo médio de resposta quando um cliente chama no WhatsApp?</li>
+        <li>De cada 10 orçamentos, quantos viram locação fechada?</li>
+        <li>O que você acha que mais faz vocês perderem locação hoje?</li>
+      </ol>
+    </div>
+    <div class="block">
+      <h2>✅ Bloco 5 — Fechamento / próximo passo</h2>
+      <ol>
+        <li>Se a gente conseguisse te trazer X orçamentos qualificados por mês, o time daria conta de atender?</li>
+        <li>Quem mais precisa participar da decisão junto com você?</li>
+        <li>Faz sentido marcar uma conversa com nosso especialista pra te mostrar como ajudamos locadoras parecidas? Qual o melhor dia?</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- WHATSAPP -->
+  <section class="panel" id="wpp">
+    <div class="block">
+      <h2 style="color:var(--wpp)">💬 Roteiro WhatsApp — enxuto e em sequência</h2>
+      <ol class="wpp">
+        <li>Pra eu entender seu cenário: há quanto tempo a locadora funciona e em qual cidade/região vocês atuam?</li>
+        <li>Quais equipamentos vocês locam e qual é o carro-chefe?</li>
+        <li>Hoje você sente que tem equipamento parado/ocioso? Mais ou menos quanto do parque?</li>
+        <li>Como os clientes chegam até vocês hoje — indicação, Google, redes?</li>
+        <li>Vocês já investem em anúncios/tráfego pago? (se sim, quanto/mês e quem cuida)</li>
+        <li>Quantos orçamentos novos vocês recebem por mês, mais ou menos?</li>
+        <li>Tem alguém dedicado a vender/atender no WhatsApp? Qual o tempo médio de resposta?</li>
+        <li>De cada 10 orçamentos, quantos fecham?</li>
+        <li>Qual sua meta de faturamento e o maior gargalo pra chegar nela hoje?</li>
+        <li>As decisões de marketing/vendas são com você mesmo?</li>
+        <li>Faz sentido te apresentar como ajudamos locadoras parecidas numa conversa rápida? Qual o melhor dia/horário?</li>
+      </ol>
+    </div>
+  </section>
+
+  <footer>
+    Oduo — A maior aceleradora de locadoras do Brasil · Material interno de pré-vendas
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.target).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

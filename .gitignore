@@ -1,0 +1,12 @@
+# Segredos — NUNCA commitar
+.env
+.env.*
+*.key
+*.pem
+secrets*.json
+credentials*.json
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
