@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Estrutura de Qualificação — Pré-Vendas | Oduo</title>
+<meta name="description" content="Estrutura de qualificação de pré-vendas (SDR) da Oduo: Abertura, SPIN, BANT e Fechamento." />
+<style>
+  :root{
+    --ink:#1c2330; --soft:#4a5566; --faint:#8a93a3; --rule:#d9dee7;
+    --green:#0a7f57; --amber:#b07d12; --red:#c0392b; --purple:#6c3fb5; --navy:#0b3a66; --teal:#0a7f8f;
+    --boxbg:#f6f8fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55;font-size:11.5pt}
+  .doc{max-width:760px;margin:0 auto;padding:36px 30px 60px}
+  h1,h2,h3,h4,.subhead,.guide .k,th,.brand,.tagline,.afirm .tag,.crit{font-family:'Segoe UI',Arial,sans-serif}
+
+  .cover{text-align:center;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+  .brand{font-weight:800;letter-spacing:3px;font-size:13pt;color:var(--green)}
+  .cover h1{font-size:24pt;margin:10px 0 4px;letter-spacing:.3px}
+  .cover .sub{color:var(--soft);font-size:11.5pt;max-width:560px;margin:0 auto}
+  .tagline{font-size:9pt;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;margin-top:12px}
+
+  .how{background:var(--boxbg);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;margin:18px 0;font-size:10.5pt;color:var(--soft)}
+  .how b{color:var(--ink)}
+
+  h2.sec{font-size:16pt;margin:30px 0 4px;padding-top:12px;border-top:1px solid var(--rule);color:var(--navy)}
+  h2.sec .no{display:inline-block;min-width:1.7em;color:var(--green)}
+  h2.sec .time{font-family:'Segoe UI',Arial,sans-serif;font-weight:400;font-size:10pt;color:var(--faint);float:right;margin-top:8px}
+  .secnote{color:var(--soft);font-size:10.5pt;margin:4px 0 8px}
+
+  p{margin:6px 0}
+  .muted{color:var(--soft)}
+  ul.q{margin:4px 0 10px;padding-left:0;list-style:none}
+  ul.q li{position:relative;padding:3px 0 3px 20px;font-size:11pt}
+  ul.q li::before{content:"›";position:absolute;left:4px;color:var(--green);font-weight:bold;font-family:'Segoe UI',sans-serif}
+  ul.plain{margin:4px 0 10px;padding-left:20px}
+  ul.plain li{padding:2px 0}
+
+  .ph{font-family:'Segoe UI',Arial,sans-serif;font-size:9.5pt;background:#eef3fa;border:1px solid #cdddf0;color:var(--navy);padding:0 5px;border-radius:3px;white-space:nowrap}
+  .em{color:var(--soft);font-style:italic}
+
+  .subhead{font-size:10.5pt;font-weight:700;color:var(--ink);margin:14px 0 2px;padding-left:8px;border-left:3px solid var(--green)}
+
+  .callout{border-left:3px solid var(--navy);background:var(--boxbg);padding:9px 14px;margin:12px 0;font-size:10.5pt;color:var(--soft)}
+  .callout b{color:var(--ink)}
+
+  /* Letras (SPIN e BANT) */
+  .letter{border:1px solid var(--rule);border-left-width:5px;border-radius:10px;padding:16px 18px;margin:14px 0;page-break-inside:avoid}
+  .letter .lh{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--rule);padding-bottom:6px;margin-bottom:8px}
+  .letter .glyph{font-family:'Segoe UI',Arial,sans-serif;font-weight:900;font-size:20pt;line-height:1}
+  .letter .ttl{font-family:'Segoe UI',Arial,sans-serif;font-weight:700;font-size:13pt}
+  .letter .kind{font-family:'Segoe UI',Arial,sans-serif;font-size:9pt;color:var(--faint);margin-left:auto;text-transform:uppercase;letter-spacing:1px}
+  .letter .goal{font-size:11pt;color:var(--soft);margin:0 0 6px}
+  .letter.S{border-left-color:var(--green)} .letter.S .glyph,.letter.S .ttl{color:var(--green)}
+  .letter.P{border-left-color:var(--amber)} .letter.P .glyph,.letter.P .ttl{color:var(--amber)}
+  .letter.I{border-left-color:var(--red)} .letter.I .glyph,.letter.I .ttl{color:var(--red)}
+  .letter.N{border-left-color:var(--purple)} .letter.N .glyph,.letter.N .ttl{color:var(--purple)}
+  .letter.bant{border-left-color:var(--navy)} .letter.bant .glyph,.letter.bant .ttl{color:var(--navy)}
+
+  .subblock{margin:10px 0 2px}
+  .subblock .sh{font-size:10pt;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;font-family:'Segoe UI',Arial,sans-serif}
+
+  .crit{background:#f0f8f4;border:1px solid #bfe3d2;border-radius:6px;padding:7px 12px;margin:6px 0 2px;font-size:10pt;color:var(--green)}
+  .crit b{color:#085f41}
+
+  footer{margin-top:34px;padding-top:10px;border-top:1px solid var(--rule);text-align:center;font-family:'Segoe UI',Arial,sans-serif;font-size:8.5pt;color:var(--faint);letter-spacing:.5px}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    @page{margin:16mm 15mm}
+    .doc{max-width:none;padding:0}
+    h2.sec,.subhead{page-break-after:avoid}
+    .callout,.letter,.crit{page-break-inside:avoid}
+    ul.q li{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="cover">
+    <div class="brand">ODUO</div>
+    <h1>Estrutura de Qualificação — Pré-Vendas</h1>
+    <p class="sub">Roteiro de qualificação de locadoras para o time de pré-vendas (SDR): entender o cenário, qualificar e agendar a reunião com o especialista.</p>
+    <div class="tagline">Abertura · SPIN · BANT · Fechamento</div>
+  </div>
+
+  <div class="how">
+    <b>Como usar.</b> O objetivo da call de pré-vendas é <b>qualificar</b> a locadora e, se ela for apta, <b>agendar a reunião de diagnóstico com o especialista (closer)</b> — deixando o compromisso amarrado.
+    As perguntas são um <b>banco</b>: escolha as que cabem em cada lead. Os marcadores <span class="ph">[...]</span> são dados do lead, preenchidos na hora.
+    Quem fala a maior parte do tempo é o lead: <b>você pergunta, escuta e anota.</b>
+  </div>
+
+  <!-- 1. ABERTURA -->
+  <h2 class="sec"><span class="no">1.</span> Abertura <span class="time">2 a 3 min</span></h2>
+  <p class="secnote">Apresente-se, diga o motivo do contato e combine o formato da call — de forma natural, num fôlego só:</p>
+  <ul class="q">
+    <li>"Fala <span class="ph">[lead]</span>, tudo bem? Aqui é o(a) SDR <span class="ph">[seu nome]</span> da <b>Oduo Assessoria</b>, a maior aceleradora de locadoras do Brasil. O motivo do meu contato: você <span class="ph">[demonstrou interesse / pediu informação sobre crescer a locadora]</span>, e eu queria entender o seu cenário pra ver <b>se</b> e <b>como</b> a gente consegue te ajudar."</li>
+    <li>"Vou te fazer algumas perguntas rápidas pra eu entender como estão a sua <b>operação</b>, o seu <b>marketing</b> e o seu <b>comercial</b>. No final, se eu ver que faz sentido, te apresento o próximo passo com um especialista nosso. Pode ser?"</li>
+  </ul>
+
+  <!-- 2. SPIN -->
+  <h2 class="sec"><span class="no">2.</span> SPIN <span class="time">8 a 12 min</span></h2>
+  <p class="secnote">Use <b>perguntas abertas</b> — faça o lead pensar e se aprofundar, não responder sim/não. Entenda o cenário (S), revele o problema (P) e mostre a consequência (I). No <b>N</b>, em vez de perguntar, você <b>apresenta brevemente a Oduo e desperta a curiosidade</b> pela reunião.</p>
+
+  <!-- S -->
+  <div class="letter S">
+    <div class="lh"><span class="glyph">S</span><span class="ttl">Situação</span><span class="kind">cenário · perguntas abertas</span></div>
+    <p class="goal">Deixe o lead se abrir. Perguntas amplas que o fazem descrever a própria operação, marketing e comercial.</p>
+
+    <div class="subblock">
+      <div class="sh">① Empresa e operação</div>
+      <ul class="q">
+        <li>"Me conta um pouco: como a locadora começou e como ela está hoje?"</li>
+        <li>"Como funciona a operação de vocês — o que locam, pra que tipo de cliente, e qual é o carro-chefe?"</li>
+        <li>"Como você enxerga o seu parque hoje? O que está rodando bem e o que te incomoda?"</li>
+        <li>"Como você descreveria o momento da empresa agora — e até onde quer levar ela?"</li>
+      </ul>
+    </div>
+    <div class="subblock">
+      <div class="sh">② Marketing</div>
+      <ul class="q">
+        <li>"Como os clientes costumam chegar até vocês hoje?"</li>
+        <li>"Como você enxerga o marketing de vocês atualmente — o que funciona e o que você sente que falta?"</li>
+        <li>"Como tem sido a experiência de vocês com anúncios e com o Google até aqui?"</li>
+      </ul>
+    </div>
+    <div class="subblock">
+      <div class="sh">③ Comercial</div>
+      <ul class="q">
+        <li>"Me leva no caminho de um orçamento: do momento em que o cliente chama até virar (ou não) uma locação, como é?"</li>
+        <li>"Como vocês organizam o comercial hoje — quem atende, como controlam e como acompanham?"</li>
+        <li>"Como você avalia a forma como o seu time vende hoje?"</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- P -->
+  <div class="letter P">
+    <div class="lh"><span class="glyph">P</span><span class="ttl">Problema</span><span class="kind">dificuldade · perguntas abertas</span></div>
+    <p class="goal">Trazer a dor à tona com perguntas reflexivas. Pergunte e <b>escute</b> — deixe o lead nomear o incômodo.</p>
+    <ul class="q">
+      <li>"Quando você pensa no que mais trava o crescimento de vocês hoje, o que vem à cabeça?"</li>
+      <li>"O que mais te incomoda no dia a dia do comercial?"</li>
+      <li>"Onde você sente que pode estar perdendo cliente ou dinheiro sem perceber?"</li>
+      <li>"Se você pudesse resolver uma única coisa no comercial amanhã, o que seria?"</li>
+    </ul>
+  </div>
+
+  <!-- I -->
+  <div class="letter I">
+    <div class="lh"><span class="glyph">I</span><span class="ttl">Implicação</span><span class="kind">consequência · perguntas abertas</span></div>
+    <p class="goal">Levar o lead a dimensionar o custo da dor — em R$ e no futuro. Aqui nasce a urgência.</p>
+    <ul class="q">
+      <li>"E isso que você falou, como impacta o seu faturamento hoje?"</li>
+      <li>"Se continuar exatamente assim pelos próximos meses, onde você acha que isso te leva?"</li>
+      <li>"Quanto você imagina que esse problema custa pra vocês todo mês?"</li>
+      <li>"Além do dinheiro, como isso afeta você e o seu time no dia a dia?"</li>
+    </ul>
+  </div>
+
+  <!-- N -->
+  <div class="letter N">
+    <div class="lh"><span class="glyph">N</span><span class="ttl">Necessidade</span><span class="kind">apresente a Oduo + gere curiosidade</span></div>
+    <p class="goal">Aqui você <b>não pergunta</b>. Conecta a dor à Oduo, explica em poucas frases o que a gente faz e desperta o interesse pela reunião.</p>
+    <ul class="q">
+      <li>"Olha, <span class="ph">[Nome]</span>, é <b>exatamente isso</b> que a gente resolve na Oduo. Somos a maior aceleradora de locadoras do Brasil e ajudamos empresas como a sua a <b>estruturar o comercial</b>, atender e converter melhor os leads que já chegam e <b>crescer com previsibilidade</b> — sem depender só de indicação."</li>
+      <li>"A gente faz isso com método próprio e ferramenta, incluindo um <b>CRM com IA de atendimento</b> que responde e faz follow up dos seus leads 24h. Já aceleramos <span class="ph">[centenas de]</span> locadoras parecidas com a sua."</li>
+      <li><span class="em">(gancho de curiosidade pra reunião)</span> "Pra te mostrar como isso funcionaria <b>na prática pra <span class="ph">[Locadora]</span></b>, o ideal é uma conversa com um dos nossos especialistas — é lá que a gente monta o diagnóstico do seu caso. Mas antes, deixa eu entender só mais alguns pontos pra ver se faz sentido."</li>
+    </ul>
+    <div class="callout"><b>Não dê o pitch completo nem fale preço aqui.</b> O objetivo é só <b>despertar curiosidade</b> e abrir caminho pra reunião — o aprofundamento e a proposta são com o especialista.</div>
+  </div>
+
+  <!-- 3. BANT -->
+  <h2 class="sec"><span class="no">3.</span> BANT <span class="time">4 a 6 min</span></h2>
+  <p class="secnote">Confirma se o lead é <b>qualificado</b> para avançar. A <b>Necessidade (N)</b> já foi validada no SPIN — aqui você só fecha as lacunas: <b>Budget</b> (faturamento), <b>Authority</b> (decisor) e <b>Timing</b> (urgência). Em cada letra há o que <b>confirmar</b> para considerar o lead apto.</p>
+
+  <!-- B (Budget) -->
+  <div class="letter bant">
+    <div class="lh"><span class="glyph">B</span><span class="ttl">Budget — Faturamento</span><span class="kind">porte da operação</span></div>
+    <p class="goal">Saber o porte da operação pelo faturamento.</p>
+    <ul class="q">
+      <li>"Pra eu entender o tamanho da operação: qual é o faturamento médio de vocês por mês hoje?"</li>
+    </ul>
+    <div class="crit"><b>✔ Qualifica se:</b> o faturamento está dentro do perfil de cliente da Oduo <span class="ph">[definir corte]</span>.</div>
+  </div>
+
+  <!-- A (Authority) -->
+  <div class="letter bant">
+    <div class="lh"><span class="glyph">A</span><span class="ttl">Authority — Autoridade</span><span class="kind">quem decide</span></div>
+    <p class="goal">Descobrir quem decide investimento em marketing e vendas.</p>
+    <ul class="q">
+      <li>"As decisões de marketing e vendas são com você mesmo, ou tem um sócio/parceiro que decide junto?"</li>
+      <li>"Se a gente marcar uma conversa mais aprofundada, faz sentido essa pessoa participar também?"</li>
+    </ul>
+    <div class="crit"><b>✔ Qualifica se:</b> você está falando com o decisor — ou ele estará na reunião com o especialista.</div>
+  </div>
+
+  <!-- T (Timing) -->
+  <div class="letter bant">
+    <div class="lh"><span class="glyph">T</span><span class="ttl">Timing — Urgência</span><span class="kind">quando resolver</span></div>
+    <p class="goal">Medir a urgência: prioridade pra agora ou pra "algum dia".</p>
+    <ul class="q">
+      <li>"Resolver isso é prioridade pra <b>agora</b>, ou é algo mais pra frente?"</li>
+      <li>"Em quanto tempo você gostaria de ver esse resultado começar a aparecer?"</li>
+    </ul>
+    <div class="crit"><b>✔ Qualifica se:</b> o lead quer resolver nos próximos ~30–90 dias (não "ano que vem").</div>
+  </div>
+
+  <div class="callout"><b>Decisão do SDR.</b> Lead <b>apto</b> = dor já validada no SPIN + faturamento no perfil (B) + decisor presente/na reunião (A) + urgência (T) → <b>agende a reunião</b>. Se faltar alguma peça, registre no CRM e <b>nutra</b> — não force um agendamento que vai dar no-show.</div>
+
+  <!-- 4. FECHAMENTO -->
+  <h2 class="sec"><span class="no">4.</span> Fechamento <span class="time">3 a 5 min</span></h2>
+  <p class="secnote">Para o lead apto: amarre o próximo passo com <b>data, hora e compromisso confirmado</b>. Aqui você marca a reunião com o especialista — sem deixar no "depois eu vejo".</p>
+
+  <div class="subhead">1. Recapitule e crie a ponte</div>
+  <ul class="q">
+    <li>"Então <span class="ph">[Nome]</span>, pelo que você me contou, hoje <span class="ph">[a dor]</span> e você quer chegar em <span class="ph">[meta/resultado]</span>. Faz muito sentido o que você falou."</li>
+    <li>"O próximo passo natural é uma <b>conversa de diagnóstico</b>, mais aprofundada, com um dos nossos especialistas — onde ele te mostra <b>exatamente</b> como locadoras como a sua estão <span class="ph">[resultado]</span>. É gratuita e dura uns 45 min."</li>
+  </ul>
+
+  <div class="subhead">2. Agende com escolha entre dois horários</div>
+  <ul class="q">
+    <li>"Olhando a agenda, consigo encaixar você <span class="ph">[terça às 10h]</span> ou <span class="ph">[quarta às 16h]</span>. Qual fica melhor pra você?" <span class="em">(ofereça A ou B, nunca "quando você pode?")</span></li>
+  </ul>
+
+  <div class="subhead">3. Garanta o decisor (se houver sócio)</div>
+  <ul class="q">
+    <li>"Como você falou que o <span class="ph">[sócio]</span> decide junto, vamos garantir que ele participe também? Sem ele, a conversa rende bem menos e você teria que repetir tudo depois."</li>
+  </ul>
+
+  <div class="subhead">4. Amarre o compromisso (o "sim" explícito)</div>
+  <ul class="q">
+    <li>"Vou <b>bloquear esse horário exclusivo</b> pra você com o especialista — é uma agenda reservada. <b>Posso confirmar a sua presença?</b>"</li>
+    <li>"Combinado então: <span class="ph">[dia/hora]</span>. Vou te mandar <b>agora no WhatsApp</b> a confirmação com data, hora e o link. Me confirma por lá assim que receber?"</li>
+  </ul>
+
+  <div class="subhead">5. Blindagem anti-no-show</div>
+  <ul class="q">
+    <li>"Um dia antes eu te mando um lembrete. Se surgir um imprevisto, me avisa que a gente remarca — mas o ideal é manter, porque essa agenda é concorrida e eu segurei esse horário pra você."</li>
+  </ul>
+
+  <div class="callout"><b>Se enrolar ("me manda por escrito" / "depois eu vejo"):</b> "Posso te mandar o material, claro! Mas o que faz diferença de verdade é a conversa com o especialista, porque ele monta o diagnóstico <i>pro seu caso</i>. Que tal a gente já deixar marcado e eu te mando o material junto? <span class="ph">[Terça ou quarta?]</span>" <span class="em">→ volta pra escolha entre dois horários.</span></div>
+
+  <footer>ODUO — A MAIOR ACELERADORA DE LOCADORAS DO BRASIL · MATERIAL INTERNO DE PRÉ-VENDAS (SDR)</footer>
+</div>
+</body>
+</html>
