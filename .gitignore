@@ -10,3 +10,13 @@ credentials*.json
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Proposta comercial (contém preços) e PDFs — não publicar
+*.pdf
+
+# Rascunhos / materiais de trabalho locais (não fazem parte do site)
+closer-reuniao-spin.html
+closer-spin-documento.html
+guia-closer-documento.html
+script-closer.html
+script-reuniao-closer.md

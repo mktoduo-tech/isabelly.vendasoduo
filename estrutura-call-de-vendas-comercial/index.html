@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Estrutura Call de Vendas — Comercial | Oduo</title>
+<meta name="description" content="Estrutura da call de vendas (comercial) Oduo: Abertura, Discovery, Implicação, Aulão, Virada de Chave, Proposta e Fechamento." />
+<style>
+  :root{
+    --ink:#1c2330; --soft:#4a5566; --faint:#8a93a3; --rule:#d9dee7;
+    --green:#0a7f57; --amber:#b07d12; --red:#c0392b; --purple:#6c3fb5; --navy:#0b3a66;
+    --boxbg:#f6f8fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55;font-size:11.5pt}
+  .doc{max-width:760px;margin:0 auto;padding:36px 30px 60px}
+  h1,h2,h3,h4,.kicker,.subhead,.guide .k,th,.brand,.tagline,.afirm .tag,.dialog .w,.step-topics li{font-family:'Segoe UI',Arial,sans-serif}
+
+  .cover{text-align:center;padding-bottom:18px;border-bottom:2px solid var(--ink);margin-bottom:8px}
+  .brand{font-weight:800;letter-spacing:3px;font-size:13pt;color:var(--green)}
+  .cover h1{font-size:24pt;margin:10px 0 4px;letter-spacing:.3px}
+  .cover .sub{color:var(--soft);font-size:11.5pt;max-width:560px;margin:0 auto}
+  .tagline{font-size:9pt;color:var(--faint);text-transform:uppercase;letter-spacing:1.5px;margin-top:12px}
+
+  .how{background:var(--boxbg);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;margin:18px 0;font-size:10.5pt;color:var(--soft)}
+  .how b{color:var(--ink)}
+
+  h2.sec{font-size:16pt;margin:30px 0 4px;padding-top:12px;border-top:1px solid var(--rule);color:var(--navy)}
+  h2.sec .no{display:inline-block;min-width:1.7em;color:var(--green)}
+  h2.sec .time{font-family:'Segoe UI',Arial,sans-serif;font-weight:400;font-size:10pt;color:var(--faint);float:right;margin-top:8px}
+  .secnote{color:var(--soft);font-size:10.5pt;margin:4px 0 8px}
+
+  p{margin:6px 0}
+  .muted{color:var(--soft)}
+  ul.q{margin:4px 0 10px;padding-left:0;list-style:none}
+  ul.q li{position:relative;padding:3px 0 3px 20px;font-size:11pt}
+  ul.q li::before{content:"›";position:absolute;left:4px;color:var(--green);font-weight:bold;font-family:'Segoe UI',sans-serif}
+  ul.plain{margin:4px 0 10px;padding-left:20px}
+  ul.plain li{padding:2px 0}
+  ol.tech{margin:6px 0;padding-left:22px}
+  ol.tech li{padding:5px 0;font-size:11pt}
+
+  .step-topics{margin:8px 0;padding-left:0;list-style:none}
+  .step-topics li{position:relative;padding:7px 0 7px 30px;border-bottom:1px solid var(--rule);font-size:11.5pt;font-weight:600}
+  .step-topics li:last-child{border-bottom:none}
+  .step-topics li::before{content:"✓";position:absolute;left:6px;color:var(--green);font-weight:bold}
+  .step-topics small{display:block;font-family:Georgia,serif;font-weight:400;color:var(--soft);font-size:10pt;margin-top:1px}
+
+  .ph{font-family:'Segoe UI',Arial,sans-serif;font-size:9.5pt;background:#eef3fa;border:1px solid #cdddf0;color:var(--navy);padding:0 5px;border-radius:3px;white-space:nowrap}
+  .em{color:var(--soft);font-style:italic}
+
+  .subhead{font-size:10.5pt;font-weight:700;color:var(--ink);margin:14px 0 2px;padding-left:8px;border-left:3px solid var(--green)}
+  .subhead.amber{border-color:var(--amber)}
+
+  .guide{border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin:10px 0 12px}
+  .guide .row{display:flex;border-bottom:1px solid var(--rule)}
+  .guide .row:last-child{border-bottom:none}
+  .guide .k{font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.6px;flex:0 0 150px;background:var(--boxbg);padding:8px 10px;color:var(--navy);border-right:1px solid var(--rule)}
+  .guide .v{padding:8px 12px;font-size:10.5pt}
+
+  .callout{border-left:3px solid var(--navy);background:var(--boxbg);padding:9px 14px;margin:12px 0;font-size:10.5pt;color:var(--soft)}
+  .callout b{color:var(--ink)}
+
+  /* Implicação: tema com afirmação + perguntas */
+  .theme{margin:14px 0;page-break-inside:avoid}
+  .theme .tname{font-family:'Segoe UI',Arial,sans-serif;font-weight:700;font-size:11pt;color:var(--red);margin-bottom:4px}
+  .theme .tname .nn{display:inline-block;min-width:1.8em;color:var(--faint);font-weight:800}
+  .afirm{border-left:3px solid var(--red);background:#fbf2f1;padding:7px 12px;margin:4px 0 6px;font-style:italic;font-size:10.8pt}
+  .afirm .tag{font-style:normal;font-weight:700;font-size:8pt;text-transform:uppercase;letter-spacing:.5px;color:var(--red);display:block;margin-bottom:2px}
+  .theme ul.q li::before{color:var(--red)}
+  .theme.mkt .tname{color:var(--amber)}
+  .theme.mkt .afirm{border-color:var(--amber);background:#fbf7ed}
+  .theme.mkt .afirm .tag{color:var(--amber)}
+  .theme.mkt ul.q li::before{color:var(--amber)}
+
+  .dialog{border:1px solid var(--rule);border-radius:6px;padding:6px 14px;margin:8px 0;font-size:10.5pt}
+
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:10.5pt}
+  th,td{text-align:left;padding:7px 10px;border:1px solid var(--rule);vertical-align:top}
+  th{font-size:9pt;text-transform:uppercase;letter-spacing:.5px;background:var(--boxbg);color:var(--navy)}
+
+  .placeholder{color:var(--faint);font-style:italic;font-size:10.5pt;margin:6px 0}
+
+  footer{margin-top:34px;padding-top:10px;border-top:1px solid var(--rule);text-align:center;font-family:'Segoe UI',Arial,sans-serif;font-size:8.5pt;color:var(--faint);letter-spacing:.5px}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    @page{margin:16mm 15mm}
+    .doc{max-width:none;padding:0}
+    h2.sec,.subhead{page-break-after:avoid}
+    .guide,.callout,table,.dialog,.theme{page-break-inside:avoid}
+    ul.q li{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <div class="cover">
+    <div class="brand">ODUO</div>
+    <h1>Estrutura Call de Vendas — Comercial</h1>
+    <p class="sub">Roteiro de condução da call de vendas (comercial) com locadoras já qualificadas pelo pré-vendas (SDR).</p>
+    <div class="tagline">Abertura · Discovery · Implicação · Aulão · Virada de Chave · Proposta · Fechamento</div>
+  </div>
+
+  <div class="how">
+    <b>Como usar.</b> Este é o mapa da reunião, etapa por etapa. Nas etapas de pergunta (Discovery e Implicação) você tem um
+    <b>banco</b> — escolha o que cabe em cada lead, não leia tudo. Os marcadores <span class="ph">[...]</span> são dados do lead,
+    preenchidos na hora. O lead deve falar a maior parte do tempo: <b>você pergunta, escuta e anota.</b>
+  </div>
+
+  <!-- 1. ABERTURA -->
+  <h2 class="sec"><span class="no">1.</span> Abertura <span class="time">4 a 6 min</span></h2>
+  <p class="secnote">Objetivo: gerar conexão, assumir o controle da pauta e <b>combinar o compromisso de decisão já no começo</b>.</p>
+
+  <div class="subhead">Apresentação do closer</div>
+  <p class="muted">Frases padrão (adapte ao seu jeito — não decore, internalize):</p>
+  <ul class="q">
+    <li>"Oi, <span class="ph">[Nome]</span>, tudo bem? Eu sou o(a) <span class="ph">[seu nome]</span>, especialista comercial aqui da Oduo. Prazer enorme!"</li>
+    <li>"Antes de tudo, queria te dizer uma coisa: minha função aqui não é te empurrar nada. É entender de verdade a sua operação e, só se fizer sentido, te mostrar o melhor caminho."</li>
+    <li>"Eu ajudo locadoras a estruturar o comercial e crescer com previsibilidade — já sentei com dezenas de operações parecidas com a sua."</li>
+  </ul>
+
+  <div class="subhead">Quebrar o gelo</div>
+  <p class="muted">Ideias de gancho pra soar natural — escolha uma, não force:</p>
+  <ul class="plain">
+    <li>Comente algo da <b>cidade/região</b> dele — "Vi que vocês são de <span class="ph">[cidade]</span>, conhece bem aí?"</li>
+    <li>Elogie o <b>tempo de mercado / a história</b> — "<span class="ph">[X anos]</span> nesse ramo é muita estrada, hein?"</li>
+    <li>Puxe um <b>detalhe que o SDR anotou</b> (algo da empresa ou pessoal).</li>
+    <li>Pergunte do <b>dia a dia</b> — "Como tá o movimento aí essa semana?"</li>
+    <li>Vá direto na <b>motivação</b> — "Me conta rapidinho: o que te fez topar essa conversa hoje?"</li>
+  </ul>
+
+  <div class="subhead">Balizamento de expectativas e condução da reunião</div>
+  <p class="muted">Frase padrão pra alinhar como vai ser — deixe claro que é um <b>diagnóstico</b>:</p>
+  <ul class="q">
+    <li>"Deixa eu te explicar rapidinho como vai ser nossa conversa, pra gente aproveitar bem o tempo. Isso aqui é um <b>diagnóstico</b>: eu vou entender como está o seu <b>marketing</b> e, principalmente, o seu <b>comercial</b> hoje, <b>onde você quer chegar</b> e <b>o que está te impedindo de crescer</b>."</li>
+    <li>"No final, com tudo isso na mesa, eu te mostro <b>qual a melhor forma de você começar a resolver isso</b> — e, se fizer sentido, uma proposta pra gente fazer junto."</li>
+  </ul>
+  <div class="callout"><b>Tirar o compromisso (o "sim" antecipado).</b> Antes de começar o diagnóstico, combine a regra do jogo:<br>
+    "E pra nossa conversa ser justa dos dois lados: no final, se você ver que faz todo sentido, eu vou te pedir uma <b>definição — um sim ou um não</b>. O que eu não quero é te deixar no 'vou pensar', porque aí ninguém sai ganhando. <b>Posso te pedir isso? Combinado?</b>"</div>
+  <div class="callout">Saia da abertura com três coisas: <b>rapport</b>, a reunião <b>enquadrada como diagnóstico</b> (marketing + comercial → melhor forma de começar) e o <b>compromisso de uma resposta no final</b>.</div>
+
+  <!-- 2. DISCOVERY -->
+  <h2 class="sec"><span class="no">2.</span> Discovery <span class="time">12 a 18 min</span></h2>
+  <p class="secnote">Entender a fundo a empresa, o marketing e o comercial. O objetivo é desenhar o <b>ponto A</b> (onde o lead está) e o <b>ponto B</b> (onde quer chegar) — e expor o tamanho do caminho entre os dois.</p>
+
+  <div class="subhead">① Sobre a empresa</div>
+  <ul class="q">
+    <li>"Me conta: o que vocês locam e qual é o carro-chefe?"</li>
+    <li>"Quantos itens vocês têm no parque e qual a taxa de ocupação hoje — tem muito parado?"</li>
+    <li>"Vocês atuam em qual região / raio?"</li>
+    <li>"Quem é o cliente que mais aluga — construtora, indústria, eventos, pessoa física?"</li>
+    <li>"Qual o ticket médio e o prazo médio de uma locação?"</li>
+    <li>"Há quanto tempo vocês estão no mercado e como começaram?"</li>
+    <li>"Qual o faturamento de vocês hoje, o patamar atual?"</li>
+  </ul>
+
+  <div class="subhead">② Sobre o marketing</div>
+  <ul class="q">
+    <li>"Hoje, como os clientes chegam até vocês — indicação, Google, redes, cliente antigo?"</li>
+    <li>"Num percentual: quanto vem de indicação e quanto vem de canais ativos?"</li>
+    <li>"Vocês já investem em anúncios/tráfego pago? Em quais canais e quanto por mês?"</li>
+    <li>"Quem opera o marketing — você, alguém interno, agência, freelancer?"</li>
+    <li>"Como está a presença de vocês no Google — site, Google Meu Negócio, avaliações?"</li>
+    <li>"Quando alguém busca '<span class="ph">[equipamento]</span> + <span class="ph">[cidade]</span>', vocês aparecem?"</li>
+    <li>"Quantos orçamentos/contatos novos vocês recebem por mês, mais ou menos?"</li>
+    <li>"Vocês conseguem medir de onde vem cada lead?"</li>
+    <li>"Já tentaram tráfego antes? Como foi a experiência?"</li>
+  </ul>
+
+  <div class="subhead">③ Sobre o comercial</div>
+  <ul class="q">
+    <li>"Quando chega um pedido de orçamento, qual é o caminho até virar locação?"</li>
+    <li>"Quantas pessoas no comercial? Tem alguém dedicado só a vender?"</li>
+    <li>"Vocês usam algum CRM/sistema, ou é WhatsApp, planilha, caderno?"</li>
+    <li>"Existe um processo definido de atendimento, ou cada um faz de um jeito?"</li>
+    <li>"Tem rotina comercial — reunião de pipeline, metas individuais, acompanhamento?"</li>
+    <li>"Vocês fazem follow up de quem pediu orçamento e não respondeu? Como?"</li>
+    <li>"Qual o tempo médio de resposta no WhatsApp? E fora do horário / fim de semana?"</li>
+    <li>"De cada 10 orçamentos, quantos viram locação fechada?"</li>
+    <li>"Quem atende hoje é mais um atendente que tira pedido, ou um vendedor que conduz e fecha?"</li>
+    <li>"Tem algum script, treinamento ou técnica de venda no time?"</li>
+  </ul>
+
+  <div class="subhead">④ Fechando o Discovery — o closer traça o ponto A → ponto B</div>
+  <p class="muted">Vira a chave aqui: em vez de <i>perguntar</i> o que separa o lead da meta (isso já é uma implicação), o <b>closer devolve o diagnóstico</b>. Confirme só o destino (ponto B); o ponto A e o que falta no caminho, quem diz é você.</p>
+  <ul class="q">
+    <li><span class="em">(Confirme o ponto B — a meta dele)</span> "Só pra fechar essa parte: onde você quer chegar de faturamento, e em quanto tempo?"</li>
+  </ul>
+  <div class="callout"><b>Devolva o diagnóstico (modelo):</b> "Então deixa eu te resumir o que eu enxerguei. Hoje vocês estão em <span class="ph">[ponto A: faturamento / cenário atual]</span> e querem chegar em <span class="ph">[ponto B: meta]</span>. Olhando a sua operação, <b>o que te separa do <span class="ph">[ponto B]</span> não é falta de cliente no mercado nem de equipamento</b> — é que hoje o comercial <span class="ph">[não converte o que já chega / não tem processo / depende de você / não faz follow up]</span>. E é exatamente sobre isso que eu quero te falar agora." <span class="em">→ emenda direto na Implicação.</span></div>
+
+  <!-- 3. IMPLICAÇÃO -->
+  <h2 class="sec"><span class="no">3.</span> Implicação <span class="time">8 a 12 min</span></h2>
+  <p class="secnote">Aqui você amplia a dor: mostra o que cada lacuna <b>custa</b> — em R$, tempo e crescimento. Para cada tema há uma
+    <b>afirmação</b> (frase que o closer usa pra plantar a consequência) e <b>perguntas de implicação</b> (que fazem o lead sentir o custo). Quantifique sempre que der.</p>
+  <div class="callout"><b>Foco estratégico.</b> O objetivo da reunião é fazer o lead comprar a ideia de <b>arrumar o comercial primeiro</b> — por isso o peso das implicações está aqui. Ainda assim falamos de marketing: é o que mostra que isto é um <b>diagnóstico completo</b> e prepara a Virada de Chave.</div>
+
+  <div class="subhead">Foco — implicações do comercial</div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">1.</span> Falta de dados comerciais</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Sem dados, toda decisão vira achismo — e no fim do mês você não sabe dizer por que vendeu mais ou menos, nem onde corrigir."</div>
+    <ul class="q">
+      <li>"Hoje você consegue dizer com precisão quantos orçamentos abriu, quantos fechou e por que os outros caíram?"</li>
+      <li>"Sem esse número, como você sabe onde está perdendo dinheiro?"</li>
+      <li>"Já tomou uma decisão no escuro que te custou caro?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">2.</span> Falta de cadência de follow up</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"A maioria das vendas acontece entre o 3º e o 7º contato. Sem cadência de follow up, você perde a venda já no primeiro 'vou pensar'."</div>
+    <ul class="q">
+      <li>"Quantas vezes seu time tenta contato antes de desistir de um orçamento?"</li>
+      <li>"Quantos negócios você acha que perdeu só porque ninguém voltou a falar com o cliente?"</li>
+      <li>"Se somar esses leads esquecidos, quanto isso dá em R$ no mês?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">3.</span> Falta de monetização da base</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Seu cliente antigo é a venda mais barata que existe — e quase ninguém volta a oferecer pra ele. Esse dinheiro está parado na sua própria carteira."</div>
+    <ul class="q">
+      <li>"Quando foi a última vez que vocês reativaram clientes que já alugaram e sumiram?"</li>
+      <li>"Quanto você acha que dá pra faturar só reativando a base atual?"</li>
+      <li>"Esses clientes estão alugando com você ou com o concorrente agora?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">4.</span> Falta de previsibilidade</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Sem previsibilidade, todo dia 1 você começa do zero, na torcida. Isso te impede de planejar caixa, compra de equipamento e contratação."</div>
+    <ul class="q">
+      <li>"No dia 1 do mês, você sabe quanto vai faturar, ou é sempre uma surpresa?"</li>
+      <li>"Como você planeja comprar equipamento e contratar sem saber a demanda que vem?"</li>
+      <li>"Quanto te custa, emocionalmente e em dinheiro, essa montanha-russa todo mês?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">5.</span> Falta de um time que segue processo</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Quando cada um vende de um jeito, o resultado é aleatório — e não dá pra escalar o que não é processo."</div>
+    <ul class="q">
+      <li>"Se eu perguntar pra dois vendedores como eles atendem, vou ouvir a mesma coisa?"</li>
+      <li>"Quando entra alguém novo, quanto tempo até ele começar a produzir?"</li>
+      <li>"Sem um padrão, como você garante que o cliente é bem atendido toda vez?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">6.</span> Dependência de vendedor</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Se a venda depende de uma pessoa, a empresa é refém dela. Aí você não tem um negócio — tem um emprego que não pode parar."</div>
+    <ul class="q">
+      <li>"Se seu melhor vendedor sair amanhã, o que acontece com o seu faturamento?"</li>
+      <li>"O conhecimento de vender está na empresa ou na cabeça dele?"</li>
+      <li>"Você consegue tirar férias sem o comercial parar?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">7.</span> Vendedor "atendente", não vendedor de fato</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Atendente tira pedido e manda preço. Vendedor conduz, contorna objeção e fecha. A diferença entre os dois é o seu faturamento."</div>
+    <ul class="q">
+      <li>"Seu time espera o cliente decidir, ou conduz a venda até o fechamento?"</li>
+      <li>"Quando o cliente diz 'vou ver e te aviso', o que seu time faz?"</li>
+      <li>"De cada 10 que só 'queriam um preço', quantos seu time transforma em locação?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">8.</span> Vendedor sem técnicas de venda</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Sem técnica, o vendedor só sabe baixar preço — porque é a única ferramenta que ele tem na mão."</div>
+    <ul class="q">
+      <li>"Seu time sabe contornar um 'tá caro' sem sair dando desconto?"</li>
+      <li>"Eles sabem criar urgência e conduzir o fechamento, ou só informam e esperam?"</li>
+      <li>"Quanto de margem você já entregou em desconto por falta de técnica do time?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">9.</span> Falta de técnicas de gestão comercial</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Sem gestão — meta clara, ritmo e acompanhamento — o time trabalha sem direção e você só descobre o problema quando o mês já acabou."</div>
+    <ul class="q">
+      <li>"Você tem reunião de pipeline e meta clara por pessoa?"</li>
+      <li>"Como você acompanha se o time está no ritmo durante o mês, e não só no fim?"</li>
+      <li>"Quando percebe que o mês vai ser ruim, ainda dá tempo de reagir?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">10.</span> Falta de CRM — e o impacto disso</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Sem CRM, os leads vivem na cabeça e no WhatsApp de cada um. E o que não está registrado está, na prática, sendo perdido."</div>
+    <ul class="q">
+      <li>"Você consegue ver, numa tela só, todos os orçamentos abertos e em que pé estão?"</li>
+      <li>"Quando um cliente some, alguém é avisado pra retomar — ou ele simplesmente se perde?"</li>
+      <li>"Quanto histórico de cliente já foi embora junto com um funcionário que saiu?"</li>
+    </ul>
+  </div>
+
+  <div class="theme">
+    <div class="tname"><span class="nn">11.</span> Lead esfriando por demora no atendimento</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"O lead é mais quente nos primeiros minutos. Cada hora de espera derruba a chance de fechar — e, fora do horário, quem responde é o concorrente."</div>
+    <ul class="q">
+      <li>"Quanto tempo, em média, um cliente espera por uma resposta no seu WhatsApp?"</li>
+      <li>"E quando ele chama às 22h, no domingo ou no feriado — o que acontece?"</li>
+      <li>"Quantos desses esfriam e acabam fechando com quem respondeu primeiro?"</li>
+    </ul>
+  </div>
+
+  <div class="subhead amber">Cenário — implicações do marketing</div>
+  <p class="muted">Menos perguntas, mas presentes: completam o diagnóstico e levam à mesma conclusão — não adianta acelerar a aquisição com o comercial furado.</p>
+
+  <div class="theme mkt">
+    <div class="tname"><span class="nn">12.</span> Depender só de indicação (sem canal ativo)</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Indicação é ótima, mas é uma torneira que você não controla. No mês em que ela seca, você não tem plano B."</div>
+    <ul class="q">
+      <li>"Se a indicação cair pela metade num mês, qual é o seu plano pra encher a agenda?"</li>
+      <li>"Dá pra crescer de forma previsível dependendo de algo que não está na sua mão?"</li>
+    </ul>
+  </div>
+
+  <div class="theme mkt">
+    <div class="tname"><span class="nn">13.</span> Investir em marketing sem medir retorno</div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Investir em anúncio sem medir de onde vem o resultado não é investir — é apostar."</div>
+    <ul class="q">
+      <li>"Hoje você sabe quanto cada real em anúncio te devolve em locação?"</li>
+      <li>"Se não dá pra medir, como você decide se vale a pena investir mais?"</li>
+    </ul>
+  </div>
+
+  <div class="theme mkt">
+    <div class="tname"><span class="nn">14.</span> Acelerar o marketing com o comercial furado <span class="em" style="font-weight:400;color:var(--faint)">(ponte pra Virada de Chave)</span></div>
+    <div class="afirm"><span class="tag">Afirmação</span>"Trazer mais lead com o comercial do jeito que está é encher um balde furado: quanto mais você investe pra atrair, mais vaza na hora de atender e fechar."</div>
+    <ul class="q">
+      <li>"Se eu dobrasse seus leads amanhã, seu time hoje daria conta de atender e fechar todos?"</li>
+      <li>"O que adianta gastar mais pra atrair, se o lead esfria antes de alguém responder?"</li>
+    </ul>
+  </div>
+
+  <div class="callout">Feche a Implicação somando em voz alta: "Então, só entre lead esfriando, follow up que não acontece e base parada, a gente tá falando de uns <span class="ph">[R$ ___]</span>/mês saindo da mesa. É isso mesmo?" — e <b>espere o lead concordar</b>. <span class="em">A implicação 14 já entrega a deixa perfeita pra Virada de Chave.</span></div>
+
+  <!-- 4. AULÃO -->
+  <h2 class="sec"><span class="no">4.</span> Aulão <span class="time">10 a 15 min</span></h2>
+  <p class="secnote">Demonstração ao vivo: o closer faz o <b>cliente oculto na prática</b> com o lead.</p>
+
+  <!-- 5. A VIRADA DE CHAVE -->
+  <h2 class="sec"><span class="no">5.</span> A Virada de Chave <span class="time">5 a 8 min</span></h2>
+  <p class="secnote">Por que estruturar o comercial <b>antes</b> de investir pesado em marketing. Esta é a parte mais persuasiva — seja claro e conduza com convicção.</p>
+
+  <p><b>O erro que quase toda locadora comete.</b> Quando falta cliente, a reação automática é "vou colocar dinheiro em tráfego e marketing pra chegar mais lead". Parece óbvio — e é justamente por isso que é uma armadilha. Se o comercial ainda não está estruturado, mais lead não vira mais venda: vira mais desperdício.</p>
+
+  <p><b>A analogia do balde furado.</b> O marketing é a torneira que enche o balde de leads. Só que se o balde está furado — lead que espera horas por resposta, follow up que não acontece, vendedor sem técnica, nenhum dado, nenhum CRM — não adianta abrir mais a torneira. Você só joga mais água (o seu dinheiro de anúncio) num balde que vaza. <b>Primeiro tampa os furos, depois abre a torneira.</b></p>
+
+  <p><b>A matemática que convence.</b> Imagine 100 leads por mês e 10% de conversão: são 10 locações. Estruturando o comercial — processo, follow up, técnica de venda e CRM — essa conversão sobe pra 25%: <b>25 locações com os mesmos 100 leads, sem gastar um real a mais em mídia.</b> Só então você liga o marketing e dobra o volume: 200 leads × 25% = 50 locações. Se você tivesse dobrado os leads <i>antes</i> de arrumar o comercial, seria 200 × 10% = 20 locações — ou seja, o dobro de gasto em anúncio pra menos da metade do resultado.</p>
+
+  <p><b>Por que isso é exponencial.</b> O comercial estruturado é o <i>multiplicador</i>; o marketing é o <i>volume</i>. Volume × multiplicador baixo = dinheiro jogado fora. Volume × multiplicador alto = crescimento exponencial. Por isso a ordem certa é: <b>1º estruturar o comercial</b> (converter melhor o que já entra), <b>2º acelerar o marketing</b> (multiplicar o volume em cima de uma conversão alta).</p>
+
+  <div class="callout"><b>Frase pronta pro closer:</b> "Se eu te trouxer mais lead hoje, com o comercial do jeito que está, a gente só acelera o desperdício. Primeiro a gente arruma a sua máquina de vender — aí cada lead que entra vira muito mais locação. <b>Depois</b> a gente liga o marketing, e o crescimento é exponencial, porque você multiplica em cima de uma conversão alta. Fazer o contrário é pisar no acelerador com o freio de mão puxado."</div>
+
+  <!-- 6. APRESENTAÇÃO DE PROPOSTA -->
+  <h2 class="sec"><span class="no">6.</span> Apresentação de Proposta <span class="time">6 a 10 min</span></h2>
+  <p class="placeholder">— Conduzida pelo closer na call, conforme o diagnóstico do Discovery e da Implicação.</p>
+
+  <!-- 7. FECHAMENTO -->
+  <h2 class="sec"><span class="no">7.</span> Fechamento <span class="time">5 a 8 min</span></h2>
+  <p class="placeholder">— Conduzido pelo closer na call.</p>
+
+  <footer>ODUO — A MAIOR ACELERADORA DE LOCADORAS DO BRASIL · MATERIAL INTERNO DE VENDAS (CLOSER)</footer>
+</div>
+</body>
+</html>
