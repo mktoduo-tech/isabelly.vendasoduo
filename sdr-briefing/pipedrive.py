@@ -76,7 +76,21 @@ def has_briefing_note(deal_id):
     return False
 
 
+def _activity_date(act):
+    """Melhor data disponível da atividade (para ordenar por recência)."""
+    return str(
+        act.get("marked_as_done_time")
+        or act.get("update_time")
+        or (str(act.get("due_date") or "") + " " + str(act.get("due_time") or "")).strip()
+        or act.get("add_time")
+        or ""
+    )
+
+
 def find_call_recordings(activities):
+    """Extrai as gravações de ligação das atividades, ORDENADAS da mais recente
+    para a mais antiga (a qualificação de verdade costuma estar nas ligações
+    mais recentes/longas — então elas entram primeiro no limite)."""
     recordings, seen = [], set()
     for act in activities or []:
         note = str(act.get("note") or "")
@@ -97,7 +111,9 @@ def find_call_recordings(activities):
         if not url or any(h in url for h in SKIP_HOSTS) or url in seen:
             continue
         seen.add(url)
-        recordings.append({"subject": subject, "url": url})
+        recordings.append({"subject": subject, "url": url, "date": _activity_date(act)})
+
+    recordings.sort(key=lambda r: r["date"], reverse=True)  # mais recentes primeiro
     return recordings
 
 

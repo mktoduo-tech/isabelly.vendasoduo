@@ -17,7 +17,7 @@ concurrency:
 jobs:
   poll:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -30,5 +30,4 @@ jobs:
         env:
           PIPEDRIVE_TOKEN: ${{ secrets.PIPEDRIVE_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.6-flash
         run: python poll_once.py

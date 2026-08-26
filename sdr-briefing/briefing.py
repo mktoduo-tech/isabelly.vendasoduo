@@ -1,12 +1,12 @@
 """Geração do briefing comercial (SPIN + BANT) a partir das ligações do lead.
 
-Chama o Gemini pela API do Google AI Studio (REST direto, nível grátis).
+Chama o Gemini pela API do Google AI Studio (REST direto, nível grátis), com
+FALLBACK de modelos: se um estiver lotado (429/503), tenta o próximo automaticamente.
 
-Preserva as REGRAS ANTI-ALUCINAÇÃO:
-- Nunca inventar: só fatos reais ditos no áudio; o que não foi dito vira
-  'Nao declarado na ligacao'.
-- Áudio em silêncio / sem qualificação -> ERRO_AUDIO_INVALIDO -> NENHUMA nota é criada.
-- Consolida TODAS as ligações do histórico (não só a última).
+Regras anti-alucinação preservadas:
+- Nunca inventa; o que não foi dito vira 'Nao declarado na ligacao'.
+- Áudio em silêncio/sem qualificação -> ERRO_AUDIO_INVALIDO -> nenhuma nota é criada.
+- Consolida TODAS as (mais recentes) ligações do histórico.
 """
 import base64
 import logging
@@ -17,7 +17,6 @@ import pipedrive
 
 log = logging.getLogger("briefing")
 
-# ⚠️ Prompt validado — não afrouxar as regras anti-alucinação.
 PROMPT = """Voce e um Diretor de Vendas e Inteligencia Comercial especialista no mercado de Locacao de Equipamentos.
 Sua tarefa e analisar TODAS as gravacoes de audio de qualificacao anexadas (elas representam diferentes contatos ou tentativas com o mesmo lead) e gerar um Briefing de Vendas consolidado e unificado de alta performance para o Closer (vendedor) baseado nas metodologias SPIN e BANT.
 
@@ -57,15 +56,50 @@ O briefing deve ser altamente analitico, conciso e estruturado exatamente com os
 Seja extremamente profissional, direto e comercialmente focado. Baseie-se integralmente no conteudo falado no audio."""
 
 
+def _model_chain():
+    seen, out = set(), []
+    for m in [config.GEMINI_MODEL] + config.GEMINI_FALLBACK_MODELS:
+        if m and m not in seen:
+            seen.add(m)
+            out.append(m)
+    return out
+
+
+def _call_gemini(parts):
+    """Chama o Gemini tentando os modelos em ordem; se um estiver lotado (429/500/503),
+    passa pro próximo. Faz 2 passadas na lista para dar conta de picos temporários."""
+    body = {"contents": [{"parts": parts}]}
+    last = None
+    for rodada in range(2):
+        for model in _model_chain():
+            url = f"{config.GEMINI_BASE}/models/{model}:generateContent?key={config.GEMINI_API_KEY}"
+            try:
+                r = requests.post(url, json=body, timeout=180)
+                if r.status_code in (429, 500, 503):
+                    last = f"{model}: HTTP {r.status_code}"
+                    log.warning("Modelo %s indisponivel (%s). Tentando proximo...", model, r.status_code)
+                    time.sleep(2)
+                    continue
+                r.raise_for_status()
+                data = r.json()
+                text = (data["candidates"][0]["content"]["parts"][0]["text"] or "").strip()
+                log.info("Briefing gerado pelo modelo %s.", model)
+                return text
+            except Exception as e:
+                last = f"{model}: {e}"
+                log.warning("Erro no modelo %s: %s", model, e)
+                time.sleep(2)
+    raise RuntimeError(f"Todos os modelos Gemini falharam. Ultimo erro: {last}")
+
+
 def _generate(recordings):
-    """Baixa os áudios, envia todos juntos ao Gemini (REST) e retorna o briefing."""
+    """Baixa as ligações MAIS RECENTES, envia ao Gemini e retorna o briefing."""
     parts = []
     for i, rec in enumerate(recordings[: config.MAX_RECORDINGS], 1):
         try:
             audio = requests.get(rec["url"], timeout=90).content
-            b64 = base64.b64encode(audio).decode("ascii")
-            parts.append({"inline_data": {"mime_type": "audio/mpeg", "data": b64}})
-            log.info("Audio %d/%d baixado (%d bytes): %s", i, len(recordings), len(audio), rec["subject"])
+            parts.append({"inline_data": {"mime_type": "audio/mpeg", "data": base64.b64encode(audio).decode("ascii")}})
+            log.info("Audio %d (%d KB): %s", i, len(audio) // 1024, rec["subject"])
         except Exception as e:
             log.warning("Falha ao baixar audio %s: %s", rec["url"], e)
 
@@ -73,24 +107,10 @@ def _generate(recordings):
         return None
 
     parts.append({"text": PROMPT})
-    url = f"{config.GEMINI_BASE}/models/{config.GEMINI_MODEL}:generateContent?key={config.GEMINI_API_KEY}"
-    body = {"contents": [{"parts": parts}]}
-
-    last_err = None
-    for attempt in range(1, 4):
-        try:
-            r = requests.post(url, json=body, timeout=180)
-            r.raise_for_status()
-            data = r.json()
-            text = (data["candidates"][0]["content"]["parts"][0]["text"] or "").strip()
-            if "ERRO_AUDIO_INVALIDO" in text.upper():
-                return "ERRO_AUDIO_INVALIDO"
-            return text
-        except Exception as e:
-            last_err = e
-            log.warning("Gemini tentativa %d falhou: %s", attempt, e)
-            time.sleep(3 * attempt)
-    raise RuntimeError(f"Gemini falhou apos 3 tentativas: {last_err}")
+    text = _call_gemini(parts)
+    if "ERRO_AUDIO_INVALIDO" in text.upper():
+        return "ERRO_AUDIO_INVALIDO"
+    return text
 
 
 def process_deal(deal_id, skip_if_briefed=True):
