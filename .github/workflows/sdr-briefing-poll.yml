@@ -1,0 +1,34 @@
+name: SDR Briefing (Pipedrive)
+
+# Roda a cada 15 min (repo publico = minutos ilimitados). Tambem pode rodar
+# manualmente pelo botao "Run workflow" na aba Actions.
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sdr-briefing-poll
+  cancel-in-progress: false
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        run: pip install -r sdr-briefing/requirements.txt
+      - name: Rodar varredura (Pipedrive -> briefing -> nota)
+        working-directory: sdr-briefing
+        env:
+          PIPEDRIVE_TOKEN: ${{ secrets.PIPEDRIVE_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.6-flash
+        run: python poll_once.py
