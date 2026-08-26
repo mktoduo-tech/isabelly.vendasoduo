@@ -1,4 +1,4 @@
-"""Helpers da API do Pipedrive (v1): negócios, atividades/ligações e notas."""
+"""Helpers da API do Pipedrive (v1): etapas, negócios, atividades/ligações e notas."""
 import re
 import logging
 import requests
@@ -21,14 +21,36 @@ def _params(extra=None):
     return p
 
 
-def get_open_deals(limit=40):
-    r = requests.get(
-        f"{config.PIPEDRIVE_BASE}/deals",
-        params=_params({"status": "open", "sort": "update_time DESC", "limit": limit}),
-        timeout=30,
-    )
+def get_stage_ids_matching(term="agendamento"):
+    """IDs das etapas cujo nome CONTÉM 'term' (ex.: 'Agendamento'), em qualquer funil."""
+    r = requests.get(f"{config.PIPEDRIVE_BASE}/stages", params=_params(), timeout=30)
     r.raise_for_status()
-    return (r.json() or {}).get("data") or []
+    stages = (r.json() or {}).get("data") or []
+    t = term.strip().lower()
+    ids, names = set(), []
+    for s in stages:
+        name = str(s.get("name") or "")
+        if t in name.lower():
+            ids.add(s.get("id"))
+            names.append(name)
+    if names:
+        log.info("Etapas casando '%s': %s", term, ", ".join(sorted(set(names))))
+    return ids
+
+
+def get_open_deals_in_stages(stage_ids, limit_per_stage=60):
+    """Negócios ABERTOS que estão nas etapas informadas (mais recentes primeiro)."""
+    deals = []
+    for sid in stage_ids:
+        r = requests.get(
+            f"{config.PIPEDRIVE_BASE}/deals",
+            params=_params({"status": "open", "stage_id": sid,
+                            "sort": "update_time DESC", "limit": limit_per_stage}),
+            timeout=30,
+        )
+        r.raise_for_status()
+        deals.extend((r.json() or {}).get("data") or [])
+    return deals
 
 
 def get_activities(deal_id):

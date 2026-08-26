@@ -1,8 +1,9 @@
 """Roda UMA varredura e sai (chamado pelo GitHub Actions a cada X minutos).
 
-Varre os negócios abertos mais recentes do Pipedrive; para cada um que tem
-ligação nova e ainda não tem briefing, gera o briefing (SPIN+BANT) e anexa
-como nota fixada no card. Dedup evita repetir.
+REGRA DE GATILHO: só olha negócios que estão na etapa de AGENDAMENTO
+(quando o SDR marcou a reunião). Para cada um que tem ligação e ainda não tem
+briefing, gera o briefing (SPIN+BANT) e anexa como nota fixada no card.
+Dedup evita repetir.
 """
 import logging
 import config
@@ -17,8 +18,18 @@ def main():
     if not config.PIPEDRIVE_TOKEN or not config.GEMINI_API_KEY:
         raise SystemExit("ERRO: defina os secrets PIPEDRIVE_TOKEN e GEMINI_API_KEY.")
 
-    deals = pipedrive.get_open_deals(config.MAX_DEALS_SCAN)
-    log.info("Negocios abertos para checar: %d", len(deals))
+    # 1) Descobre a(s) etapa(s) de "Agendamento"
+    stage_ids = pipedrive.get_stage_ids_matching(config.STAGE_MATCH)
+    if not stage_ids:
+        log.warning(
+            "Nenhuma etapa com nome contendo '%s' foi encontrada no Pipedrive. "
+            "Nada a fazer. (Confira o nome exato da etapa.)", config.STAGE_MATCH
+        )
+        return
+
+    # 2) Só os negócios abertos nessa etapa
+    deals = pipedrive.get_open_deals_in_stages(stage_ids, config.MAX_DEALS_SCAN)
+    log.info("Negocios abertos na etapa de agendamento: %d", len(deals))
 
     briefed = 0
     for d in deals:
