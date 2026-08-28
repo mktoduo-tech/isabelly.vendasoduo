@@ -28,7 +28,7 @@ REGRAS CRITICAS ABSOLUTAS:
 O briefing deve ser altamente analitico, conciso e estruturado exatamente com os seguintes topicos (use tags HTML como <h3>, <h4>, <ul>, <li>, <b> para formatar, ja que o texto sera anexado como Nota no Pipedrive):
 
 <h3>📋 BRIEFING COMERCIAL SPIN & BANT - [NOME DA EMPRESA]</h3>
-<p><i>Briefing consolidado via IA a partir de todas as ligacoes de qualificacao do SDR no historico.</i></p>
+<p><i>Briefing preparado pela <b>Andreia</b> (SDR de IA) a partir de todas as ligacoes de qualificacao do lead.</i></p>
 <hr />
 <h4>🎯 Filtro de Qualificacao (BANT)</h4>
 <ul>
@@ -52,6 +52,8 @@ O briefing deve ser altamente analitico, conciso e estruturado exatamente com os
 <li><b>Como Ancorar o Valor:</b> [Calculo ou conexao com o ROI baseado na taxa de ociosidade e metas]</li>
 <li><b>Cases de Sucesso Sugeridos:</b> [Quais cases da ODuo citar para este nicho]</li>
 </ul>
+<hr />
+<p><i>Preparado por <b>Andreia</b> 💚 — sua SDR de Inteligencia Artificial (ODuo).</i></p>
 
 Seja extremamente profissional, direto e comercialmente focado. Baseie-se integralmente no conteudo falado no audio."""
 
