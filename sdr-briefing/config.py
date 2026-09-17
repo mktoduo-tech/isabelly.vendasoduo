@@ -4,6 +4,11 @@ import os
 # --- Pipedrive ---
 PIPEDRIVE_TOKEN = os.environ.get("PIPEDRIVE_TOKEN", "").strip()
 PIPEDRIVE_BASE = "https://api.pipedrive.com/v1"
+# Campo customizado "Briefing do SDR" que a Andreia preenche automaticamente.
+# Vazio = nao preenche campo (so cria a nota fixada).
+BRIEFING_FIELD_KEY = os.environ.get(
+    "BRIEFING_FIELD_KEY", "a7b23dba90e3db2b9d744ed023c2a7a426eca698"
+).strip()
 
 # --- Gemini (Google AI Studio - nível grátis) ---
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()

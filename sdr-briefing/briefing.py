@@ -9,7 +9,9 @@ Regras anti-alucinação preservadas:
 - Consolida TODAS as (mais recentes) ligações do histórico.
 """
 import base64
+import html as _htmllib
 import logging
+import re
 import time
 import requests
 import config
@@ -115,6 +117,21 @@ def _generate(recordings):
     return text
 
 
+def _html_to_text(s):
+    """Converte o briefing (HTML) para texto limpo, pro campo customizado do Pipedrive
+    (campo de texto nao renderiza HTML). A nota fixada continua em HTML."""
+    s = (s or "").replace("\r", "")
+    s = re.sub(r"(?i)<hr\s*/?>", "\n" + "-" * 40 + "\n", s)
+    s = re.sub(r"(?i)<li[^>]*>", "• ", s)
+    s = re.sub(r"(?i)<br\s*/?>", "\n", s)
+    s = re.sub(r"(?i)</(h3|h4|p|li|ul|div)>", "\n", s)
+    s = re.sub(r"(?s)<[^>]+>", "", s)
+    s = _htmllib.unescape(s)
+    s = re.sub(r"[ \t]+\n", "\n", s)
+    s = re.sub(r"\n{3,}", "\n\n", s)
+    return s.strip()
+
+
 def process_deal(deal_id, skip_if_briefed=True):
     """Fluxo completo para um negócio: ligações -> briefing -> nota fixada."""
     if skip_if_briefed and pipedrive.has_briefing_note(deal_id):
@@ -140,4 +157,14 @@ def process_deal(deal_id, skip_if_briefed=True):
 
     pipedrive.add_pinned_note(deal_id, briefing)
     log.info("Negocio %s: briefing anexado como nota fixada. OK", deal_id)
+
+    # Alem da nota, a Andreia preenche o campo customizado "Briefing do SDR"
+    # (texto limpo). Nao mexe na "Transcricao da call" (isso e do closer).
+    if config.BRIEFING_FIELD_KEY:
+        try:
+            pipedrive.update_deal_field(deal_id, config.BRIEFING_FIELD_KEY, _html_to_text(briefing))
+            log.info("Negocio %s: campo 'Briefing do SDR' preenchido.", deal_id)
+        except Exception as e:
+            log.warning("Negocio %s: nao consegui preencher o campo de briefing: %s", deal_id, e)
+
     return {"status": "briefing_posted", "deal_id": deal_id}

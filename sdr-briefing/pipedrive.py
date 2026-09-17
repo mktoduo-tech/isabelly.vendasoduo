@@ -122,3 +122,13 @@ def add_pinned_note(deal_id, html):
     r = requests.post(f"{config.PIPEDRIVE_BASE}/notes", params=_params(), json=body, timeout=30)
     r.raise_for_status()
     return (r.json() or {}).get("data")
+
+
+def update_deal_field(deal_id, field_key, value):
+    """Grava um valor em um campo customizado do negocio (ex.: 'Briefing do SDR')."""
+    r = requests.put(
+        f"{config.PIPEDRIVE_BASE}/deals/{int(deal_id)}",
+        params=_params(), json={field_key: value}, timeout=30,
+    )
+    r.raise_for_status()
+    return (r.json() or {}).get("data")
