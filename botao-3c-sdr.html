@@ -1,0 +1,215 @@
+<title>Buscar Calls 3C</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #1bc2b9 0%, #0a827c 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    max-width: 400px;
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    color: #0a1615;
+    margin: 0 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all .2s;
+  }
+  input:focus {
+    outline: none;
+    border-color: #1bc2b9;
+    box-shadow: 0 0 0 3px #1bc2b922;
+  }
+  .help {
+    font-size: 12px;
+    color: #666;
+    margin-top: 6px;
+  }
+  button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #1bc2b9 0%, #0a827c 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .2s;
+    margin-top: 10px;
+  }
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(27, 194, 185, .3);
+  }
+  button:active {
+    transform: translateY(0);
+  }
+  .error {
+    display: none;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .success {
+    display: none;
+    background: #dcfce7;
+    color: #166534;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+  }
+  .loading {
+    display: none;
+    text-align: center;
+    color: #1bc2b9;
+    font-weight: 600;
+  }
+  .spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #1bc2b922;
+    border-top-color: #1bc2b9;
+    border-radius: 50%;
+    animation: spin .6s linear infinite;
+    margin-right: 8px;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<div class="card">
+  <h1>🔍 Buscar Calls 3C</h1>
+
+  <div class="error" id="error"></div>
+  <div class="success" id="success"></div>
+  <div class="loading" id="loading"><span class="spinner"></span>Buscando...</div>
+
+  <form id="form">
+    <div class="form-group">
+      <label for="phone">Número do lead</label>
+      <input type="text" id="phone" placeholder="11999999999" required>
+      <div class="help">Copie do Pipedrive (telefone do contato)</div>
+    </div>
+
+    <div class="form-group">
+      <label for="dealId">ID do negócio</label>
+      <input type="text" id="dealId" placeholder="12345" required>
+      <div class="help">Clique no negócio → vê na URL (depois de /deals/)</div>
+    </div>
+
+    <button type="submit">🚀 Buscar calls agora</button>
+  </form>
+</div>
+
+<script>
+const form = document.getElementById('form')
+const phoneInput = document.getElementById('phone')
+const dealIdInput = document.getElementById('dealId')
+const errorDiv = document.getElementById('error')
+const successDiv = document.getElementById('success')
+const loadingDiv = document.getElementById('loading')
+
+function showError(msg) {
+  errorDiv.textContent = msg
+  errorDiv.style.display = 'block'
+  successDiv.style.display = 'none'
+  loadingDiv.style.display = 'none'
+}
+
+function showSuccess(msg) {
+  successDiv.textContent = msg
+  successDiv.style.display = 'block'
+  errorDiv.style.display = 'none'
+  loadingDiv.style.display = 'none'
+}
+
+function showLoading() {
+  loadingDiv.style.display = 'block'
+  errorDiv.style.display = 'none'
+  successDiv.style.display = 'none'
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault()
+
+  const phone = phoneInput.value.trim()
+  const dealId = dealIdInput.value.trim()
+
+  if (!phone) {
+    showError('⚠️ Coloca o número do lead!')
+    return
+  }
+
+  if (!dealId) {
+    showError('⚠️ Coloca o ID do negócio!')
+    return
+  }
+
+  showLoading()
+
+  try {
+    const url = `https://isabelly-vendasoduo.vercel.app/api/3c-backfill?phone=${phone}&deal_id=${dealId}`
+    const r = await fetch(url)
+    const data = await r.json()
+
+    if (!r.ok) {
+      showError(`❌ ${data.error || 'Erro ao buscar'}`)
+      return
+    }
+
+    if (data.status === 'no_calls_found') {
+      showSuccess(`ℹ️ Nenhuma call encontrada para esse número nos últimos 7 dias.`)
+      return
+    }
+
+    if (data.status === 'success') {
+      showSuccess(`✅ Pronto! ${data.activities_created} call(s) registrada(s). Andreia está processando...`)
+      phoneInput.value = ''
+      dealIdInput.value = ''
+      return
+    }
+
+    showError(`Algo deu errado. Tenta de novo.`)
+  } catch (err) {
+    showError(`❌ Erro: ${err.message}`)
+  }
+})
+</script>
