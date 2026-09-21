@@ -1,0 +1,109 @@
+<title>Disparar Workflows</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    max-width: 500px;
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    margin: 0 0 30px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .workflow {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .workflow-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #111;
+    margin-bottom: 8px;
+  }
+  .workflow-desc {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+  }
+  .btn.secondary {
+    background: #10b981;
+  }
+  .btn.secondary:hover {
+    background: #059669;
+  }
+  .info {
+    background: #f0f4ff;
+    border-left: 4px solid #667eea;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #333;
+    margin-top: 30px;
+    line-height: 1.6;
+  }
+  .info b {
+    color: #667eea;
+  }
+</style>
+
+<div class="card">
+  <h1>⚙️ Disparar Workflows</h1>
+
+  <div class="workflow">
+    <div class="workflow-name">🤖 Andreia — SDR Briefing</div>
+    <div class="workflow-desc">Gera briefing das ligações da API4COM</div>
+    <a href="https://github.com/mktoduo-tech/isabelly-vendasoduo/actions/workflows/sdr-briefing.yml" target="_blank" class="btn">
+      ▶️ Disparar agora
+    </a>
+  </div>
+
+  <div class="workflow">
+    <div class="workflow-name">🔍 3C Auto-Sync</div>
+    <div class="workflow-desc">Busca calls 3C Plus para deals em Agendamento</div>
+    <a href="https://github.com/mktoduo-tech/isabelly-vendasoduo/actions/workflows/3c-auto-sync.yml" target="_blank" class="btn secondary">
+      ▶️ Disparar agora
+    </a>
+  </div>
+
+  <div class="info">
+    <b>💡 Como usar:</b><br>
+    Clique em "Disparar agora" → GitHub abre → Clique em "Run workflow" → "Run workflow" novamente. Pronto! ✅
+  </div>
+</div>
