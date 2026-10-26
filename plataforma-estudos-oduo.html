@@ -430,6 +430,9 @@
       <button class="tab-btn" onclick="openTab(event, 'negociacao')">
         NEGOCIAÇÃO
       </button>
+      <button class="tab-btn" onclick="openTab(event, 'vendas')">
+        VENDAS
+      </button>
     </div>
 
     <!-- VISÃO GERAL -->
@@ -958,6 +961,88 @@
         <div class="section-title">NEGOCIAÇÃO</div>
         <div class="section-content">
           <p>Conteúdo em breve...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- VENDAS -->
+    <div id="vendas" class="content">
+      <!-- CALL DE VENDAS (Expansível) -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <strong>CALL DE VENDAS (ROTEIRO DE REUNIÃO)</strong>
+          <div class="accordion-toggle">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div style="margin-bottom: 28px;">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 16px;">1. INTRODUÇÃO — até 5 min</strong>
+            <p style="margin: 0 0 12px 0; color: rgba(255, 255, 255, 0.85); line-height: 1.7;">Aqui você precisa:</p>
+            <div style="margin-left: 16px;">
+              <p style="margin: 0 0 8px 0;"><strong style="color: #60a5fa;">Rapport</strong> — Alegria, sintonia, firmeza. Perguntas sobre quebra gelo</p>
+              <p style="margin: 0;"><strong style="color: #60a5fa;">Marketing Pessoal</strong> — Criar autoridade pra você mesmo. Falar de suas experiências, formação etc. Objetivo é gerar autoridade e confiança.</p>
+            </div>
+            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px; margin-top: 12px;">
+              <p style="margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.8);"><strong style="color: #60a5fa;">TRANSIÇÃO:</strong> Essa conversa será pra entender sobre seu negócio, mostrar o que está te travando e se fizer sentido, apresento uma proposta pra você. Se você gostar, quero que você me de um SIM ou NÃO pra nossa solução</p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 16px;">2. QUESTIONÁRIO — 15 min a 25 min</strong>
+            <p style="margin: 0 0 12px 0; color: rgba(255, 255, 255, 0.85);">Aqui é entender sobre a empresa, dificuldades, começar a explorar a dor. Baseado no SPIN:</p>
+
+            <div style="margin-bottom: 16px;">
+              <strong style="color: #60a5fa; display: block; margin-bottom: 8px; font-size: 14px;">SITUAÇÃO</strong>
+              <div style="margin-left: 16px; font-size: 14px;">
+                <p style="margin: 0 0 4px 0;">→ Onde estão localizados</p>
+                <p style="margin: 0 0 4px 0;">→ Máquinas Paradas</p>
+                <p style="margin: 0 0 4px 0;">→ Frota</p>
+                <p style="margin: 0 0 4px 0;">→ Como faz para ter mais demandas?</p>
+                <p style="margin: 0 0 4px 0;">→ Me conta sua experiência com marketing</p>
+                <p style="margin: 0 0 4px 0;">→ Me conta um pouco sobre o comercial</p>
+                <p style="margin: 0;">→ Faturamento atual e QUAL SUA META DE FATURAMENTO DAQUI 1 ANO</p>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <strong style="color: #60a5fa; display: block; margin-bottom: 8px; font-size: 14px;">PROBLEMA</strong>
+              <div style="margin-left: 16px; font-size: 14px;">
+                <p style="margin: 0 0 4px 0;">→ O que te impede de crescer e atingir sua meta de faturamento?</p>
+                <p style="margin: 0 0 4px 0;">→ Quais consequências de ter essas máquinas paradas?</p>
+                <p style="margin: 0 0 4px 0;">→ Como [O PROBLEMA] está afetando as finanças hoje?</p>
+                <p style="margin: 0;">→ O que pode vir acontecer se a empresa continuar mais 1 ano assim?</p>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <strong style="color: #60a5fa; display: block; margin-bottom: 8px; font-size: 14px;">IMPLICAÇÃO</strong>
+              <p style="margin: 0; font-size: 14px;">Aqui vamos fazer na prática - Abrir google, falar do site, insta, atendimento, google meu negócio. E mostrar que ele tá perdendo.</p>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <strong style="color: #60a5fa; display: block; margin-bottom: 8px; font-size: 14px;">NECESSIDADE</strong>
+              <p style="margin: 0 0 8px 0; font-size: 14px;">Aqui você vai aumentar a vontade dele de ter ODuo.</p>
+              <div style="margin-left: 16px; font-size: 14px;">
+                <p style="margin: 0 0 8px 0;">01. Se resolvermos o [PROBLEMA ESPECÍFICO - XXX de fat parado, máquina parada etc] para alcançar a [META DE X de fat], mudaria positivamente seu cenário?</p>
+                <p style="margin: 0 0 8px 0;">02. Hoje, você se enxerga fazendo marketing e tendo mais demanda?</p>
+                <p style="margin: 0 0 8px 0;">03. Como você acha que seria na prática sua experiência com a ODuo/Marketing - DEIXA ELE PENSAR E FORÇA</p>
+                <p style="margin: 0 0 8px 0;">04. De 0 a 10, quanto você quer resolver esse problema?</p>
+              </div>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px;">
+              <p style="margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.8);"><strong style="color: #60a5fa;">TRANSIÇÃO:</strong> Se eu te apresentar nosso produto que vai resolver todos os problemas que falamos, isolando preço, você gostaria de ter?</p>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 16px;">3. PITCH — 15 min a 25 min</strong>
+            <p style="margin: 0; font-size: 14px; color: rgba(255, 255, 255, 0.85);"><strong style="color: #60a5fa;">SLIDES</strong></p>
+          </div>
+
+          <div style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 16px;">4. NEGOCIAÇÃO</strong>
+            <p style="margin: 0; font-size: 14px; color: rgba(255, 255, 255, 0.85);">Aqui você já quebrou várias objeções durante o pitch. Aqui é pra ficar só objeção de PREÇO.</p>
+          </div>
         </div>
       </div>
     </div>
