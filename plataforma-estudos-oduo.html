@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Estudos — ODuo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0f1f35 100%);
+      color: #fff;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(circle at 20% 50%, rgba(27, 194, 185, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid rgba(27, 194, 185, 0.2);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #1bc2b9;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #1bc2b9 0%, #0a827c 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 40px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+      overflow-x: auto;
+      padding-bottom: 0;
+    }
+
+    .tab-btn {
+      padding: 14px 24px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: #1bc2b9;
+    }
+
+    .tab-btn.active {
+      color: #1bc2b9;
+      border-bottom-color: #1bc2b9;
+    }
+
+    /* Content */
+    .content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1bc2b9;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(180deg, #1bc2b9 0%, #0a827c 100%);
+      border-radius: 2px;
+    }
+
+    .section-content {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(27, 194, 185, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .section-content p {
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    /* List Items */
+    .list-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .list-icon {
+      font-size: 24px;
+      min-width: 32px;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .list-content {
+      flex: 1;
+    }
+
+    .list-content strong {
+      display: block;
+      color: #1bc2b9;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .list-content p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    /* Table */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(27, 194, 185, 0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: rgba(27, 194, 185, 0.1);
+      padding: 16px;
+      text-align: left;
+      font-weight: 700;
+      color: #1bc2b9;
+      border-bottom: 2px solid rgba(27, 194, 185, 0.2);
+      font-size: 14px;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-right: 8px;
+    }
+
+    .tag-green {
+      background: rgba(34, 197, 94, 0.2);
+      color: #86efac;
+    }
+
+    .tag-yellow {
+      background: rgba(251, 191, 36, 0.2);
+      color: #fcd34d;
+    }
+
+    .tag-red {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+    }
+
+    /* Example Box */
+    .example-box {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .example-box strong {
+      color: #60a5fa;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .example-box p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 16px;
+      }
+
+      header {
+        margin-bottom: 40px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .section-title {
+        font-size: 20px;
+      }
+
+      .section-content {
+        padding: 20px;
+      }
+
+      .tabs {
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .tab-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="logo-icon">⚙️</div>
+        Plataforma de Estudos
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="openTab(event, 'visao-geral')">
+        📌 VISÃO GERAL
+      </button>
+      <button class="tab-btn" onclick="openTab(event, 'qualificacao')">
+        🎯 QUALIFICAÇÃO
+      </button>
+      <button class="tab-btn" onclick="openTab(event, 'proposta')">
+        📊 PROPOSTA
+      </button>
+      <button class="tab-btn" onclick="openTab(event, 'negociacao')">
+        🤝 NEGOCIAÇÃO
+      </button>
+    </div>
+
+    <!-- VISÃO GERAL -->
+    <div id="visao-geral" class="content active">
+      <!-- Nosso Mercado -->
+      <div class="section">
+        <div class="section-title">NOSSO MERCADO</div>
+        <div class="section-content">
+          <p>
+            Locadoras de máquinas e equipamentos alugam itens como betoneiras, andaimes, escoras,
+            compactadores, geradores, miniescavadeiras etc para construtoras, reformadores e
+            contratantes. É um mercado enorme no Brasil, porém com baixa presença digital — é
+            exatamente aí que a ODuo entra.
+          </p>
+        </div>
+      </div>
+
+      <!-- As Dores -->
+      <div class="section">
+        <div class="section-title">AS DORES DO NOSSO CLIENTE IDEAL</div>
+        <div class="section-content">
+          <div class="list-item">
+            <div class="list-icon">📦</div>
+            <div class="list-content">
+              <strong>Máquinas paradas no pátio gerando custo sem retorno</strong>
+              <p>Equipamentos ociosos = despesa mensal sem receita</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">📢</div>
+            <div class="list-content">
+              <strong>Vendas 100% por boca a boca — sem previsibilidade</strong>
+              <p>Sem pipeline, sem controle, resultado varia mês a mês. Impossível prever faturamento</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">🔍</div>
+            <div class="list-content">
+              <strong>Concorrentes com mais visibilidade no Google</strong>
+              <p>Locadoras maiores aparecem primeiro. Perdendo leads pra concorrência</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">⏰</div>
+            <div class="list-content">
+              <strong>Leads desqualificados que perdem tempo do time</strong>
+              <p>Sem critério pra saber quem é lead real. SDR gasta tempo com leads que não vão fechar</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">📋</div>
+            <div class="list-content">
+              <strong>Falta de estrutura comercial e processo de vendas</strong>
+              <p>Sem CRM, sem padrão de abordagem. Cada um vende do seu jeito. Zero rastreabilidade</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICP -->
+      <div class="section">
+        <div class="section-title">PERFIL DO CLIENTE IDEAL (ICP)</div>
+        <div class="section-content">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Faturamento Mensal</th>
+                  <th>Prioridade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Prioritário</strong></td>
+                  <td>Acima de R$ 50.000</td>
+                  <td><span class="tag tag-green">✓ Excelente — foco máximo</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Secundário</strong></td>
+                  <td>R$ 20.000 a R$ 49.999</td>
+                  <td><span class="tag tag-yellow">⚡ Potencial — vale a pena</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Atenção</strong></td>
+                  <td>Abaixo de R$ 20.000</td>
+                  <td><span class="tag tag-red">⚠ Informar valor mínimo antes de marcar</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box" style="margin-top: 24px;">
+            <strong>Características do ICP:</strong>
+            <p>✅ Locadora de máquinas/equipamentos (qualquer segmento)<br>
+            ✅ Operando há pelo menos 2 anos<br>
+            ✅ Problema: vendas desorganizadas ou por indicação apenas<br>
+            ✅ Dor: máquinas paradas, falta de previsibilidade<br>
+            ✅ Mindset: aberto a tecnologia/processos<br>
+            ✅ Localização: Brasil (prioridade: Sul, Sudeste, Centro-Oeste)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tom de Voz -->
+      <div class="section">
+        <div class="section-title">TOM DE VOZ</div>
+        <div class="section-content">
+          <p style="margin-bottom: 24px; font-style: italic; color: #1bc2b9;">
+            Amigável, com energia e médio informal. Objetivo: proximidade e rapport com o setor de locação.
+          </p>
+
+          <div style="margin-bottom: 24px;">
+            <strong style="color: #86efac; display: block; margin-bottom: 12px;">✅ COMO FALAR</strong>
+
+            <div class="list-item" style="border: none; padding-bottom: 0;">
+              <div class="list-icon">💬</div>
+              <div class="list-content">
+                <strong>Linguagem do setor</strong>
+                <p>"Tá com equipamento parado aí gerando custo?"<br>"Bora aumentar a rotatividade das máquinas?"</p>
+              </div>
+            </div>
+
+            <div class="list-item" style="border: none; padding-bottom: 0;">
+              <div class="list-icon">💪</div>
+              <div class="list-content">
+                <strong>Com energia e confiança</strong>
+                <p>"A gente tá ajudando locadora como você a crescer 40% em 6 meses"</p>
+              </div>
+            </div>
+
+            <div class="list-item" style="border: none; padding-bottom: 0;">
+              <div class="list-icon">🤝</div>
+              <div class="list-content">
+                <strong>Amigável e próximo</strong>
+                <p>"Blz? Tudo certo aí?" "A gente já trabalhou com vários locadores como você"</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <strong style="color: #fca5a5; display: block; margin-bottom: 12px;">❌ NÃO FALAR</strong>
+            <p>❌ "Prezado senhor..." (muito formal)<br>
+            ❌ "Temos uma solução revolucionária..." (falta autenticidade)<br>
+            ❌ Termos muito técnicos sem explicar (CRM, pipeline, ROI)<br>
+            ❌ "Você tá tendo dificuldade?" (assumir problema, cria defensiva)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comportamentos -->
+      <div class="section">
+        <div class="section-title">COMPORTAMENTOS ESPERADOS</div>
+        <div class="section-content">
+          <div class="list-item">
+            <div class="list-icon">⏰</div>
+            <div class="list-content">
+              <strong>Pontualidade</strong>
+              <p>Reunião marcada = você tá lá 5 min antes. Atraso = prejuízo pro cliente e ODuo</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">🤝</div>
+            <div class="list-content">
+              <strong>Compromisso MÁXIMO com o cliente</strong>
+              <p>O cliente vem em primeiro lugar. Você é a voz da ODuo pra ele. Cada lead é ouro</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">💼</div>
+            <div class="list-content">
+              <strong>Muito trabalho + Proatividade</strong>
+              <p>Não espera tarefa. Propostas novas vêm de você. Prospecciona todo dia. Faz follow-up mesmo quando quer desistir</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">🏆</div>
+            <div class="list-content">
+              <strong>Protagonismo</strong>
+              <p>Você é dono do seu resultado. Problema? Você resolve. Sucesso? Você criou</p>
+            </div>
+          </div>
+
+          <div class="list-item">
+            <div class="list-icon">🚀</div>
+            <div class="list-content">
+              <strong>Tentar até o final</strong>
+              <p>"Não" só é válido depois de 7 tentativas. Desistir fácil? Nunca.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUALIFICAÇÃO (placeholder) -->
+    <div id="qualificacao" class="content">
+      <div class="section">
+        <div class="section-title">QUALIFICAÇÃO</div>
+        <div class="section-content">
+          <p>Conteúdo em breve...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROPOSTA (placeholder) -->
+    <div id="proposta" class="content">
+      <div class="section">
+        <div class="section-title">PROPOSTA</div>
+        <div class="section-content">
+          <p>Conteúdo em breve...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEGOCIAÇÃO (placeholder) -->
+    <div id="negociacao" class="content">
+      <div class="section">
+        <div class="section-title">NEGOCIAÇÃO</div>
+        <div class="section-content">
+          <p>Conteúdo em breve...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openTab(evt, tabName) {
+      const contents = document.querySelectorAll('.content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+</body>
+</html>
