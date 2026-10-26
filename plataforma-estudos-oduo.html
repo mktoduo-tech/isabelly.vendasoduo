@@ -633,100 +633,68 @@
 
     <!-- PRÉ VENDAS -->
     <div id="pre-vendas" class="content">
-      <div class="section">
-        <div class="section-title">ROTEIRO DE LIGAÇÃO</div>
-        <div class="section-content">
-          <!-- ABERTURA -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>ABERTURA</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>Boa tarde [XXX]! Tudo bem?</strong></p>
-              <p>Aqui quem fala é [SDR] especialista da ODuo Assessoria.</p>
-              <p>[LEAD] to entrando em contato por que você preencheu nosso formulário pra falar da sua locadora [ABC]. Ai marcamos depois uma reunião caso faça sentido beleza?</p>
+      <!-- ROTEIRO DE LIGAÇÃO (Expansível) -->
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <strong>ROTEIRO DE LIGAÇÃO</strong>
+          <div class="accordion-toggle">▼</div>
+        </div>
+        <div class="accordion-content">
+          <div style="margin-bottom: 24px;">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">ABERTURA</strong>
+            <p><strong>Boa tarde [XXX]! Tudo bem?</strong></p>
+            <p>Aqui quem fala é [SDR] especialista da ODuo Assessoria.</p>
+            <p>[LEAD] to entrando em contato por que você preencheu nosso formulário pra falar da sua locadora [ABC]. Ai marcamos depois uma reunião caso faça sentido beleza?</p>
+          </div>
+
+          <div style="margin-bottom: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">DISCOVERY</strong>
+            <p><strong>[LEAD] O que você loca e o que levou você a procurar a ODuo?</strong></p>
+            <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
+            <p><strong>E qual dificuldade você está passando?</strong></p>
+            <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
+            <p><strong>E com esse problema/dificuldade, quanto de máquina parada fica no pátio?</strong></p>
+          </div>
+
+          <div style="margin-bottom: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">MARKETING</strong>
+            <p><strong>E me conta, você já trabalhou com marketing para gerar demanda?</strong></p>
+            <p>Se sim, QUANTO e como foi a experiência.</p>
+          </div>
+
+          <div style="margin-bottom: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">IMPLICAÇÃO</strong>
+            <p><strong>[LEAD] E por onde chegam sua demandas?</strong></p>
+            <p><strong>E se alguém pesquisar no google o que voce aluga, ela vai te encontrar?</strong></p>
+            <p><strong>[LEAD] E qual a importância de uma estratégia de marketing para você?</strong></p>
+            <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
+            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px; margin-top: 12px;">
+              <p style="margin: 0; font-size: 14px; color: rgba(255, 255, 255, 0.8);"><strong>Você vai abrir o Google Meu Negócio e falar que não está achando ele.</strong></p>
+              <p style="margin: 8px 0 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+                Hoje, quando uma empresa precisa alugar uma máquina ou equipamento, ela pesquisa no Google. Se a sua empresa não aparece entre as primeiras opções, você deixa o cliente encontrar, cotar e fechar com o concorrente.
+              </p>
             </div>
           </div>
 
-          <!-- DISCOVERY -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>DISCOVERY</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>[LEAD] O que você loca e o que levou você a procurar a ODuo?</strong></p>
-              <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
-              <p><strong>E qual dificuldade você está passando?</strong></p>
-              <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
-              <p><strong>E com esse problema/dificuldade, quanto de máquina parada fica no pátio?</strong></p>
-            </div>
+          <div style="margin-bottom: 24px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">BANT</strong>
+            <p><strong>[LEAD] e com as maquinas que estão rodando, quanto ta o faturamento de voces ai?</strong></p>
+            <p><strong>E você é sócio aí na [LOCADORA]?</strong></p>
+            <p><strong>E de 0 a 10, qual é a prioridade para você resolver esse problema que falamos? é pra resolver dentro desse mes ja?</strong></p>
           </div>
 
-          <!-- MARKETING -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>MARKETING</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>E me conta, você já trabalhou com marketing para gerar demanda?</strong></p>
-              <p>Se sim, QUANTO e como foi a experiência.</p>
-            </div>
-          </div>
-
-          <!-- IMPLICAÇÃO -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>IMPLICAÇÃO</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>[LEAD] E por onde chegam sua demandas?</strong></p>
-              <p><strong>E se alguém pesquisar no google o que voce aluga, ela vai te encontrar?</strong></p>
-              <p><strong>[LEAD] E qual a importância de uma estratégia de marketing para você?</strong></p>
-              <p><em style="color: rgba(255, 255, 255, 0.6);">→ Ouvir</em></p>
-              <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px; margin-top: 12px;">
-                <p style="margin: 0; font-size: 14px; color: rgba(255, 255, 255, 0.8);"><strong>Você vai abrir o Google Meu Negócio e falar que não está achando ele.</strong></p>
-                <p style="margin: 8px 0 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
-                  Hoje, quando uma empresa precisa alugar uma máquina ou equipamento, ela pesquisa no Google. Se a sua empresa não aparece entre as primeiras opções, você deixa o cliente encontrar, cotar e fechar com o concorrente.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- BANT -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>BANT</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>[LEAD] e com as maquinas que estão rodando, quanto ta o faturamento de voces ai?</strong></p>
-              <p><strong>E você é sócio aí na [LOCADORA]?</strong></p>
-              <p><strong>E de 0 a 10, qual é a prioridade para você resolver esse problema que falamos? é pra resolver dentro desse mes ja?</strong></p>
-            </div>
-          </div>
-
-          <!-- FECHAMENTO -->
-          <div class="accordion-item">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-              <strong>FECHAMENTO</strong>
-              <div class="accordion-toggle">▼</div>
-            </div>
-            <div class="accordion-content">
-              <p><strong>Maravilha! Vamos marcar uma reunião pra gente te explicar na prática como resolvermos esse problema [CITAR AS DORES DELES]. Vamos te mostrar como levamos locadores de 50k pra 200k e quais estratégias fizemos.</strong></p>
-              <p>Ai se você gostar, a gente já te mostra uma proposta PERSONALIZADA. Beleza??!</p>
-              <p><strong>Bom, tenho horário aqui X ou Y. Qual fica melhor?</strong></p>
-              <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px; margin-top: 12px;">
-                <p style="margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.8);"><strong>Instruções complementares:</strong></p>
-                <p style="margin: 6px 0 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.7);">
-                  ■ Avisar do grupo no WhatsApp<br>
-                  ■ Gerar compromisso<br>
-                  ■ Falar umas 3x o dia e horário
-                </p>
-              </div>
+          <div style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px; font-size: 15px;">FECHAMENTO</strong>
+            <p><strong>Maravilha! Vamos marcar uma reunião pra gente te explicar na prática como resolvermos esse problema [CITAR AS DORES DELES]. Vamos te mostrar como levamos locadores de 50k pra 200k e quais estratégias fizemos.</strong></p>
+            <p>Ai se você gostar, a gente já te mostra uma proposta PERSONALIZADA. Beleza??!</p>
+            <p><strong>Bom, tenho horário aqui X ou Y. Qual fica melhor?</strong></p>
+            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #60a5fa; padding: 12px; border-radius: 4px; margin-top: 12px;">
+              <p style="margin: 0; font-size: 13px; color: rgba(255, 255, 255, 0.8);"><strong>Instruções complementares:</strong></p>
+              <p style="margin: 6px 0 0 0; font-size: 13px; color: rgba(255, 255, 255, 0.7);">
+                ■ Avisar do grupo no WhatsApp<br>
+                ■ Gerar compromisso<br>
+                ■ Falar umas 3x o dia e horário
+              </p>
             </div>
           </div>
         </div>
