@@ -28,7 +28,7 @@
       width: 100%;
       height: 100%;
       background-image:
-        radial-gradient(circle at 20% 50%, rgba(27, 194, 185, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
@@ -48,28 +48,34 @@
       align-items: center;
       margin-bottom: 60px;
       padding-bottom: 30px;
-      border-bottom: 2px solid rgba(27, 194, 185, 0.2);
+      border-bottom: 2px solid rgba(59, 130, 246, 0.2);
     }
 
     .logo {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       letter-spacing: 2px;
-      color: #1bc2b9;
+      color: #fff;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
 
     .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #1bc2b9 0%, #0a827c 100%);
+      width: 50px;
+      height: 50px;
+      background: transparent;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     /* Tabs */
@@ -96,12 +102,12 @@
     }
 
     .tab-btn:hover {
-      color: #1bc2b9;
+      color: #3b82f6;
     }
 
     .tab-btn.active {
-      color: #1bc2b9;
-      border-bottom-color: #1bc2b9;
+      color: #3b82f6;
+      border-bottom-color: #3b82f6;
     }
 
     /* Content */
@@ -132,7 +138,7 @@
     .section-title {
       font-size: 24px;
       font-weight: 700;
-      color: #1bc2b9;
+      color: #3b82f6;
       margin-bottom: 20px;
       display: flex;
       align-items: center;
@@ -143,13 +149,13 @@
       content: '';
       width: 4px;
       height: 28px;
-      background: linear-gradient(180deg, #1bc2b9 0%, #0a827c 100%);
+      background: linear-gradient(180deg, #3b82f6 0%, #1e40af 100%);
       border-radius: 2px;
     }
 
     .section-content {
       background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(27, 194, 185, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.2);
       border-radius: 12px;
       padding: 30px;
       backdrop-filter: blur(10px);
@@ -190,7 +196,7 @@
 
     .list-content strong {
       display: block;
-      color: #1bc2b9;
+      color: #60a5fa;
       margin-bottom: 4px;
       font-size: 15px;
     }
@@ -205,7 +211,7 @@
     .table-wrapper {
       overflow-x: auto;
       border-radius: 12px;
-      border: 1px solid rgba(27, 194, 185, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.2);
     }
 
     table {
@@ -214,12 +220,12 @@
     }
 
     th {
-      background: rgba(27, 194, 185, 0.1);
+      background: rgba(59, 130, 246, 0.1);
       padding: 16px;
       text-align: left;
       font-weight: 700;
-      color: #1bc2b9;
-      border-bottom: 2px solid rgba(27, 194, 185, 0.2);
+      color: #3b82f6;
+      border-bottom: 2px solid rgba(59, 130, 246, 0.2);
       font-size: 14px;
     }
 
@@ -244,8 +250,8 @@
     }
 
     .tag-green {
-      background: rgba(34, 197, 94, 0.2);
-      color: #86efac;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
     }
 
     .tag-yellow {
@@ -319,7 +325,12 @@
     <!-- Header -->
     <header>
       <div class="logo">
-        <div class="logo-icon">⚙️</div>
+        <div class="logo-icon">
+          <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="width: 50px; height: 50px;">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="white" stroke-width="2"/>
+            <text x="50" y="55" font-size="28" font-weight="700" text-anchor="middle" fill="white" font-family="Arial, sans-serif">ODUO</text>
+          </svg>
+        </div>
         Plataforma de Estudos
       </div>
     </header>
@@ -450,12 +461,12 @@
       <div class="section">
         <div class="section-title">TOM DE VOZ</div>
         <div class="section-content">
-          <p style="margin-bottom: 24px; font-style: italic; color: #1bc2b9;">
+          <p style="margin-bottom: 24px; font-style: italic; color: #60a5fa;">
             Amigável, com energia e médio informal. Objetivo: proximidade e rapport com o setor de locação.
           </p>
 
           <div style="margin-bottom: 24px;">
-            <strong style="color: #86efac; display: block; margin-bottom: 12px;">✅ COMO FALAR</strong>
+            <strong style="color: #60a5fa; display: block; margin-bottom: 12px;">✅ COMO FALAR</strong>
 
             <div class="list-item" style="border: none; padding-bottom: 0;">
               <div class="list-icon">💬</div>
