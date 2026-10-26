@@ -286,6 +286,84 @@
       font-size: 14px;
     }
 
+    /* Accordion */
+    .accordion-item {
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      padding: 16px;
+      background: rgba(59, 130, 246, 0.08);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .accordion-header:hover {
+      background: rgba(59, 130, 246, 0.12);
+    }
+
+    .accordion-header strong {
+      color: #60a5fa;
+      font-size: 15px;
+    }
+
+    .accordion-toggle {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3b82f6;
+      transition: transform 0.3s ease;
+    }
+
+    .accordion-toggle.open {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      border-top: 1px solid rgba(59, 130, 246, 0.1);
+      line-height: 1.8;
+    }
+
+    .accordion-content.open {
+      display: block;
+    }
+
+    .accordion-content p {
+      margin-bottom: 12px;
+    }
+
+    .accordion-content strong {
+      color: #60a5fa;
+    }
+
+    .accordion-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .accordion-tag {
+      font-size: 12px;
+      padding: 6px 12px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border-radius: 4px;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .container {
@@ -649,9 +727,130 @@
       <div class="section">
         <div class="section-title">CADÊNCIA DE MENSAGEM</div>
         <div class="section-content">
-          <p style="color: rgba(255, 255, 255, 0.8); text-align: center; padding: 40px 20px;">
-            Conteúdo em breve...
-          </p>
+          <!-- DIA 1 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 1 — Primeiro Contato</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p>Oi, <strong>[Nome]</strong>! Aqui é o <strong>[SDR]</strong> da ODuo.</p>
+              <p>Vi que você preencheu nosso anúncio e queria entender um pouco melhor sobre sua realidade hoje.</p>
+              <p>Nós ajudamos locadoras como a sua a saírem do boca a boca e entrarem num modelo estruturado de geração de clientes com previsibilidade e escala.</p>
+              <p>Te liguei agora mas sem sucesso. Posso te retornar hoje às <strong>[HORÁRIO]</strong>?</p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 2 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 2 — Dor do Mercado</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p>Opa <strong>[Nome]</strong>! Tudo certo por aí? Vi seu contato aqui e lembrei de você.</p>
+              <p>Tô trocando ideia com alguns locadores hoje, e uma coisa que a maioria fala é o tempo que perde cadastrando máquina na OLX... E pior: às vezes faz tudo isso e nem cliente aparece.</p>
+              <p>Se quiser, posso te mostrar um jeito de parar de perder tempo com isso — é só responder essa mensagem.</p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 3 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 3 — Case de Sucesso</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p style="background: rgba(251, 191, 36, 0.15); padding: 12px; border-left: 3px solid #fcd34d; border-radius: 4px; margin-bottom: 12px;">
+                <strong>Ação:</strong> Enviar um case de sucesso de cliente da Oduo. Selecionar o mais relevante para o perfil do lead.
+              </p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 4 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 4 — Modo Sobrevivência</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p>Fala, <strong>[Nome]</strong>! Conseguiu dar uma olhada no vídeo?</p>
+              <p>Você já tem uma estratégia clara pra atrair clientes fora do boca a boca e indicações?</p>
+              <p>Se ainda estiver no modo sobrevivência, posso te ajudar a virar esse jogo como. Só preciso de <strong>20 min</strong>.</p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Áudio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 5 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 5 — Proposta Direta</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p><strong>[Nome]</strong>! Tudo certo? <strong>[SDR]</strong> aqui da ODuo... Vi que você ainda não respondeu a seguinte:</p>
+              <p><strong>Segunda-feira às 14h</strong> posso te mostrar como funciona o plano Avança pra seu tipo de operação.</p>
+              <p>Se não fizer sentido, tudo certo! Mas acho que você vai se surpreende poucos meses com o método certo!!</p>
+              <p style="background: rgba(59, 130, 246, 0.15); padding: 12px; border-left: 3px solid #3b82f6; border-radius: 4px;">
+                <strong>Posso te ligar segunda às 14h?</strong>
+              </p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 7 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 7 — Vaga de Diagnóstico</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p>Oi, <strong>[Nome]</strong>!</p>
+              <p>Estou com uma vaga para uma <strong>sessão de diagnóstico</strong> com meu especialista para locadoras que querem dobrar a geração de clientes nos próximos 90 dias.</p>
+              <p>Posso te incluir nessa próxima agenda? Só preciso saber se você tem <strong>5 minutos disponíveis</strong>.</p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DIA 8 -->
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <strong>DIA 8 — Breakup — Encerramento</strong>
+              <div class="accordion-toggle">▼</div>
+            </div>
+            <div class="accordion-content">
+              <p>Oi, <strong>[Nome]</strong>! Tudo certo?</p>
+              <p>Tentei contato algumas vezes e entendo que talvez esse não seja o melhor momento.</p>
+              <p>Na ODuo, a gente caminha junto com quem quer escalar de verdade — acompanhamento por aqui, mas deixo a porta aberta.</p>
+              <p>Sigue nossos canais pra continuar recebendo dicas e conteúdos do setor de locação. <strong>Instagram: @oduo.assessoria</strong></p>
+              <p>Se em algum momento quiser virar o jogo e atrair clientes com método aqui. <strong>Forte abraço</strong>!</p>
+              <div class="accordion-tags">
+                <span class="accordion-tag">2x Ligação</span>
+                <span class="accordion-tag">Mensagem</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -697,6 +896,14 @@
 
       document.getElementById(tabName).classList.add('active');
       evt.currentTarget.classList.add('active');
+    }
+
+    function toggleAccordion(header) {
+      const content = header.nextElementSibling;
+      const toggle = header.querySelector('.accordion-toggle');
+
+      content.classList.toggle('open');
+      toggle.classList.toggle('open');
     }
   </script>
 </body>
